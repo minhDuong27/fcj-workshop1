@@ -1,53 +1,204 @@
 ---
-title: "Đề Xuất Dự Án"
-date: 2025-09-11
+title: "Proposal"
+date: 2025-10-11
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Thông tin dưới đây chỉ nhằm mục đích tham khảo. Vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn, bao gồm cả phần cảnh báo này.
-{{% /notice %}}
 
-# Dự Án AWS Security Scan  
-## Giải pháp tự động hóa CI/CD tích hợp phân tích bảo mật và giám sát an toàn hệ thống
 
-### 1. Tóm tắt điều hành  
-**Dự án AWS Security Scan** được thiết kế nhằm tự động hóa quá trình kiểm tra bảo mật trong suốt vòng đời phát triển phần mềm, bằng cách tích hợp các dịch vụ AWS như **CodePipeline**, **CodeBuild**, **CodeGuru Reviewer**, và **AWS Security Hub**.  
-Dự án này hướng đến các nhóm DevOps hoặc sinh viên đang nghiên cứu về DevSecOps, giúp họ triển khai pipeline CI/CD có khả năng **phát hiện sớm lỗ hổng bảo mật, cảnh báo tự động, và tạo báo cáo an ninh theo thời gian thực**.
+# AWS Security Scan Project – Project Plan  
+## [Team DevSecOps FCJ] – [FPT University / Internship Program] – [AWS Security Scan Project]
+Date: 2025-10-11
+### TABLE OF CONTENTS
+1.BACKGROUND AND MOTIVATION
+ 1.1 EXECUTIVE SUMMARY
+ 1.2 PROJECT SUCCESS CRITERIA
+ 1.3 ASSUMPTIONS
 
-### 2. Tuyên bố vấn đề  
-*Thách thức hiện tại*  
-Trong nhiều dự án phần mềm, quy trình CI/CD thường chỉ tập trung vào việc build và triển khai mà **thiếu sự kiểm soát bảo mật tự động**. Các lỗ hổng bảo mật thường chỉ được phát hiện sau khi hệ thống đã đi vào hoạt động, gây tốn thời gian và tiềm ẩn rủi ro cao.
+2.SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM
+ 2.1 TECHNICAL ARCHITECTURE DIAGRAM
+ 2.2 TECHNICAL PLAN
+ 2.3 PROJECT PLAN
+ 2.4 SECURITY CONSIDERATIONS
 
-*Giải pháp đề xuất*  
-Tích hợp quy trình “Security Scan as Code” vào pipeline tự động:
-- **CodePipeline** điều phối toàn bộ quy trình build–scan–deploy.  
-- **CodeBuild** chạy các công cụ quét mã nguồn và kiểm thử bảo mật.  
-- **CodeGuru Reviewer** thực hiện phân tích mã tĩnh để phát hiện lỗi và vi phạm bảo mật.  
-- **AWS Security Hub** và **Amazon Detective** tập trung cảnh báo và tổng hợp dữ liệu từ **CloudWatch**, **GuardDuty**, và **CloudTrail**, giúp quản trị viên nhận diện rủi ro trên toàn hệ thống.  
+3.ACTIVITIES AND DELIVERABLES
+ 3.1 ACTIVITIES AND DELIVERABLES
+ 3.2 OUT OF SCOPE
+ 3.3 PATH TO PRODUCTION
 
-Mọi thay đổi trong mã nguồn đều được quét tự động, và khi phát hiện bất thường, hệ thống sẽ gửi thông báo qua **Amazon SNS**.
+4.EXPECTED AWS COST BREAKDOWN BY SERVICES
 
-### 3. Kiến trúc giải pháp  
-Pipeline bao gồm **năm giai đoạn chính**: phát triển, build, quét bảo mật, triển khai và giám sát.
+5.TEAM
 
-![Kiến trúc dự án AWS Security Scan](/images/2-Proposal/Security%20Scan%20project%20AWS.drawio.png)
+6.RESOURCES & COST ESTIMATES
 
-*Các dịch vụ AWS được sử dụng:*  
-- **GitLab**: Kho lưu trữ mã nguồn, kích hoạt pipeline mỗi khi có commit mới.  
-- **AWS CodePipeline**: Tự động hóa toàn bộ quy trình CI/CD.  
-- **AWS CodeBuild**: Build ứng dụng và chạy các công cụ kiểm thử bảo mật (ví dụ: SonarQube, Trivy, Bandit).  
-- **AWS CodeGuru Reviewer**: Thực hiện đánh giá mã bằng AI, phát hiện lỗi và đề xuất cải tiến.  
-- **AWS Security Hub**: Trung tâm quản lý kết quả quét bảo mật và kiểm tra tuân thủ.  
-- **Amazon Detective**: Phân tích log và phát hiện các hoạt động đáng ngờ.  
-- **Amazon CloudWatch** và **AWS GuardDuty**: Cung cấp giám sát liên tục và phát hiện mối đe dọa.  
-- **Amazon SNS**: Gửi cảnh báo khi phát hiện lỗ hổng hoặc hành vi bất thường.  
+7.ACCEPTANCE
+### 1. BACKGROUND AND MOTIVATION
+### 1.1 EXECUTIVE SUMMARY  
+The AWS Security Scan Project aims to automate the security inspection process across the software development lifecycle by integrating AWS services such as CodePipeline, CodeBuild, CodeGuru Reviewer, and AWS Security Hub.
+This initiative enhances the security posture of continuous integration and deployment pipelines by embedding automated vulnerability scanning, AI-powered code analysis, and centralized incident monitoring.
+Use cases include:
 
-Kiến trúc này giúp đảm bảo quy trình CI/CD được tích hợp đầy đủ các bước kiểm tra bảo mật tự động, phân tích thông minh, và giám sát tập trung xuyên suốt vòng đời phát triển phần mềm.
+Continuous integration with built-in security validation.
 
-### 4. Kết quả mong đợi  
-- **Security-first CI/CD Pipeline**: Tích hợp quét và phân tích tự động trong từng lần commit.  
-- **Improved Efficiency**: Giảm khối lượng công việc kiểm thử thủ công.  
-- **TEnhanced Visibility**: Bảng điều khiển tập trung và cảnh báo thời gian thực giúp nâng cao nhận thức an ninh hệ thống.  
-- **Practical Learning Resource**: Là ví dụ điển hình cho việc tự động hóa bảo mật trong DevSecOps sử dụng dịch vụ AWS.  
+Automated alerts and compliance reporting.
+
+Real-time visibility into vulnerabilities and code quality.
+
+Partner services focus on designing, implementing, and optimizing a DevSecOps pipeline that ensures secure, compliant, and efficient software delivery.
+
+### 1.2 PROJECT SUCCESS CRITERIA  
+≥95% of code commits pass automated security scans before deployment.
+
+Real-time alerts are sent within 2 minutes of anomaly detection.
+
+Security Hub compliance score ≥90%.
+
+Successful integration between CodePipeline, CodeBuild, and Security Hub with zero manual intervention.
+
+### 1.3 ASSUMPTIONS  
+All AWS accounts are pre-configured with IAM roles and permissions for CodePipeline and CodeBuild.
+
+GitLab repository access and webhooks are enabled.
+
+Security tools (e.g., Trivy, Bandit, SonarQube) are available in CodeBuild environment.
+
+The organization follows AWS Well-Architected and Security best practices.
+
+### 2. SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM
+### 2.1 TECHNICAL ARCHITECTURE DIAGRAM
+
+The proposed solution integrates multiple AWS services for CI/CD, automated security analysis, and monitoring.
+It includes components for source control (GitLab), build and test automation (CodeBuild), pipeline orchestration (CodePipeline), AI-based code review (CodeGuru Reviewer), and centralized alerting (Security Hub + SNS).
+
+(Insert Diagram: /images/2-Proposal/Security Scan project AWS.drawio.png)
+
+# Tools used: #
+
+GitLab
+
+AWS CodePipeline
+
+AWS CodeBuild
+
+AWS CodeGuru Reviewer
+
+AWS Security Hub, GuardDuty, Detective
+
+SonarQube, Trivy, Bandit
+
+### 2.2 TECHNICAL PLAN
+
+The partner will develop buildspec scripts in YAML for CodeBuild to automate:
+
+Source code scanning (Trivy, Bandit)
+
+Static code analysis (CodeGuru Reviewer)
+
+Build packaging and deployment triggers
+
+All deployments will be version-controlled via GitLab CI triggers.
+Configuration files will follow Infrastructure as Code principles using AWS CloudFormation.
+
+### 2.3 PROJECT PLAN
+
+The team will adopt Agile Scrum methodology over 4 sprints (2 weeks each).
+Stakeholders will participate in Sprint Reviews and Retrospectives.
+
+Roles and responsibilities:
+
+DevOps Engineer: CI/CD pipeline setup
+
+Security Engineer: Security integration and analysis
+
+Project Lead: Coordination, reporting, documentation
+
+Weekly sync-up meetings will be held via Slack and AWS Chime.
+
+### 2.4 SECURITY CONSIDERATIONS
+
+Access – IAM least privilege, MFA for admin accounts
+
+Infrastructure – Private subnets for build agents
+
+Data – S3 encryption (SSE-KMS), CodeBuild log encryption
+
+Detection – GuardDuty and Security Hub continuous monitoring
+
+Incident Management – SNS notifications and CloudWatch alarms for anomalies
+
+### 3. ACTIVITIES AND DELIVERABLES
+### 3.1 ACTIVITIES AND DELIVERABLES
+| Project Phase            | Timeline | Activities                          | Deliverables/Milestones        | Total Man-days |
+|---------------------------|-----------|--------------------------------------|--------------------------------|----------------|
+| Assessment                | Week 1–2 | Analyze existing CI/CD               | Report & Architecture Design    | 5              |
+| Setup base infrastructure | Week 3–4 | Create CodePipeline & CodeBuild      | Pipeline Deployed               | 7              |
+| Integrate Security Tools  | Week 5–6 | Add SonarQube, Trivy, Bandit         | Security Scan Active            | 6              |
+| Monitoring Setup          | Week 7   | Connect Security Hub, CloudWatch     | Alert System Operational        | 4              |
+| Testing & Go-Live         | Week 8   | Final testing, documentation         | Go-Live Report                  | 3              |
+| Handover                  | Week 9   | Knowledge transfer                   | Final Project Handover          | 2              |
+
+### 3.2 OUT OF SCOPE
+
+On-premises application security scanning
+
+Third-party compliance frameworks beyond AWS tools
+
+Non-AWS CI/CD environments
+
+### 3.3 PATH TO PRODUCTION
+
+The Proof-of-Concept focuses on AWS-native DevSecOps integration.
+For production deployment, additional steps such as multi-account security setup, network isolation, and automated patching will be required.
+
+### 4. EXPECTED AWS COST BREAKDOWN BY SERVICES
+| Service          | Description              | Estimated Monthly Cost (USD) |
+|------------------|--------------------------|-------------------------------|
+| CodePipeline     | Orchestration            | 10                            |
+| CodeBuild        | Build + Scan             | 30                            |
+| CodeGuru Reviewer| Code analysis            | 25                            |
+| Security Hub     | Aggregation + Alerts     | 15                            |
+| CloudWatch       | Logs + Metrics           | 10                            |
+| S3               | Artifact storage         | 5                             |
+| SNS              | Notifications            | 5                             |
+| **Total (approx.)** |                          | **100 USD/month**             |
+
+
+
+### 5. TEAM
+| Name             | Student ID | Email / Contact                  |
+|------------------|-------------|----------------------------------|
+| Lê Công Cảnh     | SE183750    | canhlcse183750@fpt.edu.vn       |
+| Phùng Gia Đức    | SE183187    | ducpgse183187@fpt.edu.vn        |
+| Vũ Nguyễn Bình   | SE193185    | vunguyenbinh25@gmail.com        |
+| Lê Minh Dương    | SE184079    | duonglmse184079@fpt.edu.vn      |
+| Nguyễn Phi Duy   | SE180529    | duynpse180529@fpt.edu.vn        |
+
+
+
+
+### 6. RESOURCES & COST ESTIMATES
+| Resource           | Responsibility        | Rate (USD/hr) | Total Hours | Cost (USD) |
+|-------------------|---------------------|---------------|------------|------------|
+| Solution Architect | Design & Review      | 60            | 40         | 2400       |
+| DevOps Engineer    | Pipeline Implementation | 45         | 60         | 2700       |
+| Security Engineer  | Tool Integration     | 50            | 50         | 2500       |
+| **Total**          |                     |               | 150        | **7600**   |
+
+
+
+
+### 7. ACCEPTANCE
+
+Upon completion of each phase, the provider will submit deliverables to the customer with an Acceptance Form.
+The customer will review within 8 business days and provide either:
+
+Written acceptance confirmation, or
+
+Rejection notice with feedback.
+
+If no response is received within the acceptance period, the deliverable is deemed accepted.
+---
+
+
