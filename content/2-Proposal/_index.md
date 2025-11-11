@@ -11,21 +11,35 @@ pre: " <b> 2. </b> "
 ## [Team DevSecOps FCJ] – [FPT University / Internship Program] – [AWS Security Scan Project]
 Date: 2025-10-11
 ### TABLE OF CONTENTS
-1.BACKGROUND AND MOTIVATION
+1.BACKGROUND AND MOTIVATION  
+
  1.1 EXECUTIVE SUMMARY
+
  1.2 PROJECT SUCCESS CRITERIA
+
  1.3 ASSUMPTIONS
 
+
 2.SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM
+
  2.1 TECHNICAL ARCHITECTURE DIAGRAM
+
  2.2 TECHNICAL PLAN
+
  2.3 PROJECT PLAN
+
  2.4 SECURITY CONSIDERATIONS
 
+
+
 3.ACTIVITIES AND DELIVERABLES
+
  3.1 ACTIVITIES AND DELIVERABLES
+
  3.2 OUT OF SCOPE
+
  3.3 PATH TO PRODUCTION
+
 
 4.EXPECTED AWS COST BREAKDOWN BY SERVICES
 
@@ -34,6 +48,7 @@ Date: 2025-10-11
 6.RESOURCES & COST ESTIMATES
 
 7.ACCEPTANCE
+
 ### 1. BACKGROUND AND MOTIVATION
 ### 1.1 EXECUTIVE SUMMARY  
 The AWS Security Scan Project aims to automate the security inspection process across the software development lifecycle by integrating AWS services such as CodePipeline, CodeBuild, CodeGuru Reviewer, and AWS Security Hub.
@@ -74,7 +89,7 @@ It includes components for source control (GitLab), build and test automation (C
 
 (Insert Diagram: /images/2-Proposal/Security Scan project AWS.drawio.png)
 
-# Tools used: #
+#### Tools used: 
 
 GitLab
 
@@ -199,6 +214,8 @@ Written acceptance confirmation, or
 Rejection notice with feedback.
 
 If no response is received within the acceptance period, the deliverable is deemed accepted.
+
+
 ---
 
 
