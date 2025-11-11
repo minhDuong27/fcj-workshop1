@@ -1,14 +1,14 @@
 ---
-title: "Event 1"
+title: "Event 3"
 
 weight: 1
 chapter: false
-pre: " <b> 4.1. </b> "
+pre: " <b> 4.2. </b> "
 ---
 
 
 
-# Bài thu hoạch “AWS Cloud Mastery Series #1”
+# Bài thu hoạch “AWS Cloud Mastery Series #3”
 
 ### Mục Đích Của Sự Kiện
 
