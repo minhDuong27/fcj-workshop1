@@ -1,57 +1,31 @@
 ---
-title: "Worklog Tuần 3"
-
-weight: 1
+title:  "Worklog Tuần 3"
+date: 2025-09-22
+weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
+---
 
+### Week 3 Objectives:
 
+* Bắt đầu Module 02 – phần Networking.
+* Hiểu khái niệm VPC, subnet, route table, IGW, NAT Gateway.
+* Biết sự khác nhau giữa Security Group và NACL.
+* Làm các lab VPC cơ bản.
 
-### Mục tiêu tuần 3:
+### Tasks to be carried out this week:
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | <ul><li>Xem Module 02-01: Tổng quan VPC</li><li>Ghi chú về CIDR, subnet, private/public subnet</li></ul> | 22/09/2025 | 22/09/2025 | Module 02-01 |
+| 3 | <ul><li>Xem Module 02-02: Security Group và NACL</li><li>So sánh SG stateful – NACL stateless</li></ul> | 23/09/2025 | 23/09/2025 | Module 02-02 |
+| 4 | <ul><li>Xem Module 02-03: VPN, Direct Connect, Load Balancer</li><li>Hiểu sơ các cách kết nối on-prem với AWS</li></ul> | 24/09/2025 | 24/09/2025 | Module 02-03 |
+| 5 | <ul><li>Bắt đầu chuỗi lab:</li><ul><li>Lab03-01: Tạo VPC</li><li>Lab03-01.1: Subnet</li><li>Lab03-01.2: Route Table</li><li>Lab03-01.3: Internet Gateway</li><li>Lab03-01.4: NAT Gateway</li></ul></ul> | 25/09/2025 | 25/09/2025 | Lab03-01 → 01.4 |
+| 6 | <ul><li>Làm tiếp lab bảo mật:</li><ul><li>Lab03-02.1: Security Group</li><li>Lab03-02.2: NACL</li><li>Lab03-02.3: Resource Map</li></ul></ul> | 26/09/2025 | 26/09/2025 | Lab03-02.x |
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Week 3 Achievements:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 22/09/2025   | 26/09/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 22/09/2025   | 26/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 22/09/2025   | 26/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 22/09/2025   | 26/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 22/09/2025   | 26/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
-
-### Kết quả đạt được tuần 3:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Nắm được các thành phần cơ bản của VPC.
+* Tự tạo được VPC, subnet, route table, gán IGW và NAT.
+* Hiểu rõ Security Group và NACL khác nhau thế nào.
+* Làm xong toàn bộ phần lab cơ bản của Module 02.

@@ -1,187 +1,156 @@
 ---
 title: "Proposal"
-date: 2025-10-11
+date: 2025-09-11
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
 
 
-# AWS Security Scan Project – Project Plan  
-## [Team DevSecOps FCJ] – [FPT University / Internship Program] – [AWS Security Scan Project]
-Date: 2025-10-11
-### TABLE OF CONTENTS
-1.BACKGROUND AND MOTIVATION  
+# Security Scan Pipeline on AWS Cloud 
+## Automated solution for source code security analysis in the DevSecOps pipeline
 
- 1.1 EXECUTIVE SUMMARY
+### 1. BACKGROUND AND PROJECT DRIVERS
+#### 1.1 EXECUTIVE SUMMARY
+The client is developing an application and wants to adopt a DevSecOps model to automate the build–scan–deploy workflow, improve security, and shorten release cycles.
 
- 1.2 PROJECT SUCCESS CRITERIA
+System objectives:
 
- 1.3 ASSUMPTIONS
+- Detect security vulnerabilities and code smells early in the source code using Amazon CodeGuru Reviewer.
+- Automatically build and create artifacts when new commits occur.
+- Store artifacts securely in Amazon S3.
+- Automatically deploy the application to Amazon EC2 via AWS CodeDeploy.
 
+Use cases:
 
-2.SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM
+- Automatic security scanning on new commits.
+- Automated build and artifact creation.
+- Secure artifact storage.
+- Automatic EC2 deployment.
+- Centralized alerts and process monitoring.
 
- 2.1 TECHNICAL ARCHITECTURE DIAGRAM
+Professional services provided:
 
- 2.2 TECHNICAL PLAN
+- Implement CodePipeline integrated with GitHub, include CodeBuild + CodeGuru Reviewer, configure S3 artifact storage, deploy to EC2 with CodeDeploy, and enable security monitoring and logging (CloudWatch, CloudTrail, GuardDuty, Security Hub).
 
- 2.3 PROJECT PLAN
+#### 1.2 PROJECT SUCCESS CRITERIA
 
- 2.4 SECURITY CONSIDERATIONS
+- The client provides a GitHub repository with appropriate permissions.
+- IAM Roles have sufficient permissions for CodeBuild, CodeDeploy, S3, and CloudWatch.
+- EC2 instances are provisioned and ready for deployment.
+- The application supports deployment via appspec.yml.
+- Multiple environments (dev/stg/prod) are not required at this time.
+- AWS Free Tier is used to reduce costs where possible.
+- Potential risks: timeouts, webhook failures, corrupted artifacts, insufficient IAM permissions.
 
+#### 1.3 ASSUMPTIONS
 
-
-3.ACTIVITIES AND DELIVERABLES
-
- 3.1 ACTIVITIES AND DELIVERABLES
-
- 3.2 OUT OF SCOPE
-
- 3.3 PATH TO PRODUCTION
-
-
-4.EXPECTED AWS COST BREAKDOWN BY SERVICES
-
-5.TEAM
-
-6.RESOURCES & COST ESTIMATES
-
-7.ACCEPTANCE
-
-### 1. BACKGROUND AND MOTIVATION
-### 1.1 EXECUTIVE SUMMARY  
-The AWS Security Scan Project aims to automate the security inspection process across the software development lifecycle by integrating AWS services such as CodePipeline, CodeBuild, CodeGuru Reviewer, and AWS Security Hub.
-This initiative enhances the security posture of continuous integration and deployment pipelines by embedding automated vulnerability scanning, AI-powered code analysis, and centralized incident monitoring.
-Use cases include:
-
-Continuous integration with built-in security validation.
-
-Automated alerts and compliance reporting.
-
-Real-time visibility into vulnerabilities and code quality.
-
-Partner services focus on designing, implementing, and optimizing a DevSecOps pipeline that ensures secure, compliant, and efficient software delivery.
-
-### 1.2 PROJECT SUCCESS CRITERIA  
-≥95% of code commits pass automated security scans before deployment.
-
-Real-time alerts are sent within 2 minutes of anomaly detection.
-
-Security Hub compliance score ≥90%.
-
-Successful integration between CodePipeline, CodeBuild, and Security Hub with zero manual intervention.
-
-### 1.3 ASSUMPTIONS  
-All AWS accounts are pre-configured with IAM roles and permissions for CodePipeline and CodeBuild.
-
-GitLab repository access and webhooks are enabled.
-
-Security tools (e.g., Trivy, Bandit, SonarQube) are available in CodeBuild environment.
-
-The organization follows AWS Well-Architected and Security best practices.
+- The customer provides a GitHub repository with appropriate permissions.
+- IAM Roles have sufficient permissions for CodeBuild, CodeDeploy, S3, and CloudWatch.
+- EC2 instances are valid and ready for deployment.
+- The application supports deployment via appspec.yml.
+- Multiple environments (dev/stg/prod) are not required at this time.
+- AWS Free Tier is used to minimize costs.
+- Potential risks include: timeouts, webhook failures, corrupted artifacts, insufficient IAM permissions.
 
 ### 2. SOLUTION ARCHITECTURE / ARCHITECTURAL DIAGRAM
-### 2.1 TECHNICAL ARCHITECTURE DIAGRAM
+#### 2.1 TECHNICAL ARCHITECTURE DIAGRAM
+Architecture diagram: ![DevOps / Pipeline Engineer](/images/2-Proposal/z7163899093605_61ed75e700147e145be9ee71415522bc.jpg)
 
-The proposed solution integrates multiple AWS services for CI/CD, automated security analysis, and monitoring.
-It includes components for source control (GitLab), build and test automation (CodeBuild), pipeline orchestration (CodePipeline), AI-based code review (CodeGuru Reviewer), and centralized alerting (Security Hub + SNS).
+AWS services used:
 
-(Insert Diagram: /images/2-Proposal/Security Scan project AWS.drawio.png)
+- AWS CodePipeline
+- AWS CodeBuild
+- Amazon CodeGuru Reviewer
+- Amazon S3
+- AWS CodeDeploy
+- Amazon EC2
+- Amazon SNS
+- CloudWatch, CloudTrail, GuardDuty, Detective, Security Hub
 
-#### Tools used: 
+#### 2.2 TECHNICAL PLAN
+Includes:
 
-GitLab
+- Configure GitHub connection (OIDC or Personal Access Token).
+- Create CodeBuild project and provide buildspec.yml.
+- Integrate Amazon CodeGuru Reviewer.
+- Configure CodeDeploy and appspec.yml.
+- Enable monitoring and security logging following AWS Well-Architected best practices.
 
-AWS CodePipeline
+#### 2.3 PROJECT PLAN
+We will follow Agile Scrum with two sprints (2 weeks per sprint).
 
-AWS CodeBuild
+Team responsibilities:
 
-AWS CodeGuru Reviewer
+- DevOps Engineer: design and implement the pipeline
+- Developer: support testing and provide the repository
+- Security Analyst: review alerts from CodeGuru & GuardDuty
 
-AWS Security Hub, GuardDuty, Detective
+Meeting cadence:
 
-SonarQube, Trivy, Bandit
+- Daily Standup
+- Weekly Review
+- Bi-weekly Retrospective
 
-### 2.2 TECHNICAL PLAN
+Knowledge transfer: one training session on using the pipeline and one session on viewing logs & reports.
 
-The partner will develop buildspec scripts in YAML for CodeBuild to automate:
+#### 2.4 SECURITY CONSIDERATIONS
 
-Source code scanning (Trivy, Bandit)
+1. Access
+- Enable MFA
+- Use IAM Roles instead of long-term Access Keys
 
-Static code analysis (CodeGuru Reviewer)
+2. Infrastructure
+- Security Groups with IP restrictions
 
-Build packaging and deployment triggers
+3. Data
+- S3 encryption (SSE-S3)
 
-All deployments will be version-controlled via GitLab CI triggers.
-Configuration files will follow Infrastructure as Code principles using AWS CloudFormation.
+4. Detection
+- GuardDuty, Detective, CloudTrail
 
-### 2.3 PROJECT PLAN
+5. Incident Management
+- SNS alerts for failed builds/deployments
 
-The team will adopt Agile Scrum methodology over 4 sprints (2 weeks each).
-Stakeholders will participate in Sprint Reviews and Retrospectives.
+### 3. ACTIVITIES & DELIVERABLES
+#### 3.1 ACTIVITIES & DELIVERABLES
+| Phase                | Duration  | Activity                    | Deliverable         | Man-day |
+| -------------------- | --------- | --------------------------- | ------------------- | ------- |
+| Assessment           | Week 1    | Requirements gathering      | Initial architecture | X      |
+| Infrastructure setup | Week 1–2  | S3, IAM, EC2, GitHub        | Infrastructure      | X      |
+| Pipeline setup       | Week 2–3  | CodePipeline + Build + Scan | Complete pipeline   | X      |
+| Deployment setup     | Week 3    | CodeDeploy                  | Automated deploy    | X      |
+| Testing & Go-live    | Week 4    | Test the pipeline           | Test report         | X      |
+| Handover             | Week 4    | Training + documentation    | Final handover      | X      |
 
-Roles and responsibilities:
+#### 3.2 OUT OF SCOPE
+- No additional staging/production environments will be provisioned.
+- No integration with SonarQube / Trivy / Checkov.
+- No advanced dashboard design.
+- No autoscaling or load balancer configuration.
 
-DevOps Engineer: CI/CD pipeline setup
+#### 3.3 PATH TO PRODUCTION
+The POC is intended for the initial demo only.
+To move to production, additional work is required: automated unit tests, enhanced monitoring, detailed error handling, and multi-environment CI/CD.
 
-Security Engineer: Security integration and analysis
+### 4. AWS COST ESTIMATE
+Estimated monthly costs:
 
-Project Lead: Coordination, reporting, documentation
+- CodePipeline: $0.40 / month
+- CodeBuild: $0.35 / month
+- S3: $0.10 / month
+- CodeDeploy: $0.20 / month
+- EC2 t2.micro: $0.10 / month
+- CloudWatch + SNS: $0.05 / month
 
-Weekly sync-up meetings will be held via Slack and AWS Chime.
+Total: ~ $1.2 / month (~ $14.4 / year)
 
-### 2.4 SECURITY CONSIDERATIONS
+### 5. PROJECT TEAM
+Executive Sponsor & Stakeholders
 
-Access – IAM least privilege, MFA for admin accounts
+Team: First Cloud Journey
 
-Infrastructure – Private subnets for build agents
-
-Data – S3 encryption (SSE-KMS), CodeBuild log encryption
-
-Detection – GuardDuty and Security Hub continuous monitoring
-
-Incident Management – SNS notifications and CloudWatch alarms for anomalies
-
-### 3. ACTIVITIES AND DELIVERABLES
-### 3.1 ACTIVITIES AND DELIVERABLES
-| Project Phase            | Timeline | Activities                          | Deliverables/Milestones        | Total Man-days |
-|---------------------------|-----------|--------------------------------------|--------------------------------|----------------|
-| Assessment                | Week 1–2 | Analyze existing CI/CD               | Report & Architecture Design    | 5              |
-| Setup base infrastructure | Week 3–4 | Create CodePipeline & CodeBuild      | Pipeline Deployed               | 7              |
-| Integrate Security Tools  | Week 5–6 | Add SonarQube, Trivy, Bandit         | Security Scan Active            | 6              |
-| Monitoring Setup          | Week 7   | Connect Security Hub, CloudWatch     | Alert System Operational        | 4              |
-| Testing & Go-Live         | Week 8   | Final testing, documentation         | Go-Live Report                  | 3              |
-| Handover                  | Week 9   | Knowledge transfer                   | Final Project Handover          | 2              |
-
-### 3.2 OUT OF SCOPE
-
-On-premises application security scanning
-
-Third-party compliance frameworks beyond AWS tools
-
-Non-AWS CI/CD environments
-
-### 3.3 PATH TO PRODUCTION
-
-The Proof-of-Concept focuses on AWS-native DevSecOps integration.
-For production deployment, additional steps such as multi-account security setup, network isolation, and automated patching will be required.
-
-### 4. EXPECTED AWS COST BREAKDOWN BY SERVICES
-| Service          | Description              | Estimated Monthly Cost (USD) |
-|------------------|--------------------------|-------------------------------|
-| CodePipeline     | Orchestration            | 10                            |
-| CodeBuild        | Build + Scan             | 30                            |
-| CodeGuru Reviewer| Code analysis            | 25                            |
-| Security Hub     | Aggregation + Alerts     | 15                            |
-| CloudWatch       | Logs + Metrics           | 10                            |
-| S3               | Artifact storage         | 5                             |
-| SNS              | Notifications            | 5                             |
-| **Total (approx.)** |                          | **100 USD/month**             |
-
-
-
-### 5. TEAM
+Project Team
 | Name             | Student ID | Email / Contact                  |
 |------------------|-------------|----------------------------------|
 | Lê Công Cảnh     | SE183750    | canhlcse183750@fpt.edu.vn       |
@@ -190,32 +159,32 @@ For production deployment, additional steps such as multi-account security setup
 | Lê Minh Dương    | SE184079    | duonglmse184079@fpt.edu.vn      |
 | Nguyễn Phi Duy   | SE180529    | duynpse180529@fpt.edu.vn        |
 
-
-
-
 ### 6. RESOURCES & COST ESTIMATES
-| Resource           | Responsibility        | Rate (USD/hr) | Total Hours | Cost (USD) |
-|-------------------|---------------------|---------------|------------|------------|
-| Solution Architect | Design & Review      | 60            | 40         | 2400       |
-| DevOps Engineer    | Pipeline Implementation | 45         | 60         | 2700       |
-| Security Engineer  | Tool Integration     | 50            | 50         | 2500       |
-| **Total**          |                     |               | 150        | **7600**   |
+See the cost estimate on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01) or download the [budget estimation file](../attachments/budget_estimation.pdf).
 
+#### 6.1 Resource Allocation & Hourly Rates
 
+| **Resource**                   | **Responsibility**                                                                                       | **Rate (USD) / Hour** | **Headcount** |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------- | --------------------- | ------------- |
+| **Solution Architects**        | Architecture design, security review, AWS service integration, oversight of CI/CD & scanning pipeline    | 6 – 9               | 1             |
+| **Engineers (DevOps / Cloud)** | Implement CI/CD pipeline, configure CodePipeline/CodeBuild/CodeDeploy, IAM setup, testing, documentation | 4 – 7              | 1–2           |
+| **Other (Security Engineer)**  | Integrate code scanning tools (SonarQube, Trivy, CodeGuru Security), analyze reports                     | 5 – 8               | 1             |
+
+#### 6.2 Estimated Project Hours by Phase
+
+| **Project Phase**                           | **Solution Architects (Hours)** | **Engineers (Hours)** | **Other (Hours)** | **Total Hours** |
+| ------------------------------------------- | ------------------------------- | --------------------- | ----------------- | --------------- |
+| **Phase 1 – Discovery & Requirements**      | 4                               | 4                     | 0                 | 8               |
+| **Phase 2 – Architecture Design**           | 6                               | 2                     | 0                 | 8               |
+| **Phase 3 – Pipeline Implementation**       | 4                               | 20                    | 6                 | 30              |
+| **Phase 4 – Security Scanning Integration** | 2                               | 6                     | 8                 | 16              |
+| **Phase 5 – Testing & Validation**          | 2                               | 8                     | 4                 | 14              |
+| **Phase 6 – Documentation & Handover**      | 2                               | 6                     | 2                 | 10              |
+| **Total Hours**                             | **20**                          | **46**                | **20**            | **86 Hours**    |
 
 
 ### 7. ACCEPTANCE
 
-Upon completion of each phase, the provider will submit deliverables to the customer with an Acceptance Form.
-The customer will review within 8 business days and provide either:
-
-Written acceptance confirmation, or
-
-Rejection notice with feedback.
-
-If no response is received within the acceptance period, the deliverable is deemed accepted.
-
-
----
-
-
+- The client has 8 days to review the deliverables.
+- If no response is received, the deliverables will be considered accepted.
+- If defects are found, the provider will fix and resubmit according to the Rejection Notice process.

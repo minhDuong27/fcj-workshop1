@@ -1,57 +1,30 @@
 ---
 title: "Worklog Tuần 4"
-
-weight: 1
+date: 2025-09-29
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
+### Week 4 Objectives:
 
+* Làm phần lab nâng cao của Module 02.
+* Tạo EC2 trong các subnet và test kết nối.
+* Làm phần Hybrid DNS và Route53 Resolver.
 
-### Mục tiêu tuần 4:
+### Tasks to be carried out this week:
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | <ul><li>Lab03-03.1: Create VPC</li><li>Lab03-03.2: Create Subnet</li><li>Lab03-03.3: Create IGW</li><li>Lab03-03.4: Tạo route cho Internet</li><li>Lab03-03.5: Tạo security groups</li></ul> | 29/09/2025 | 29/09/2025 | Lab03-03.x |
+| 3 | <ul><li>Lab03-04.1: Tạo EC2 trong các subnet</li><li>Lab03-04.2: Test kết nối giữa các máy</li><li>Lab03-04.3: Tạo NAT Gateway</li></ul> | 30/09/2025 | 30/09/2025 | Lab03-04.x |
+| 4 | <ul><li>Tìm hiểu về Hybrid DNS</li><li>Xem lý thuyết Route53 Resolver</li></ul> | 01/10/2025 | 01/10/2025 | Module 02 DNS |
+| 5 | <ul><li>Lab10-01 → Lab10-03: Hybrid DNS + RDGW</li></ul> | 02/10/2025 | 02/10/2025 | Lab10.x |
+| 6 | <ul><li>Lab10-05.x: Tạo outbound/inbound resolver</li><li>Test DNS</li><li>Dọn dẹp tài nguyên</li></ul> | 03/10/2025 | 03/10/2025 | Lab10-05.x |
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Week 4 Achievements:
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 29/09/2025   | 03/10/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 29/09/2025   | 03/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 29/09/2025   | 03/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 29/09/2025   | 03/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 29/09/2025   | 03/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
-
-### Kết quả đạt được tuần 4:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
+* Biết quy trình tạo hệ thống mạng đầy đủ cho một VPC.
+* Tự triển khai EC2 trong public/private subnet và kiểm tra routing.
+* Hiểu cách Route53 Resolver hoạt động trong mô hình hybrid.
+* Kết thúc phần VPC cơ bản.
 

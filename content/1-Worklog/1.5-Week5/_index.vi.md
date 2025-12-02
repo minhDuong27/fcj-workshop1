@@ -1,56 +1,28 @@
 ---
 title: "Worklog Tuần 5"
-
-weight: 1
+date: 2025-10-06
+weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
 
+### Week 5 Objectives:
 
-### Mục tiêu tuần 5:
+* Hiểu sự khác nhau giữa Peering và Transit Gateway.
+* Tạo VPC Peering và cấu hình route.
+* Thực hành TGW nhiều VPC.
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Tasks to be carried out this week:
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | <ul><li>Xem bài giới thiệu VPC Peering</li><li>Lab19-01 → 19-03</li></ul> | 06/10/2025 | 06/10/2025 | Lab19.x |
+| 3 | <ul><li>Lab19-04: Tạo peering connection</li><li>Lab19-05: Route tables</li></ul> | 07/10/2025 | 07/10/2025 | Lab19 |
+| 4 | <ul><li>Lab19-06: Cross-peer DNS</li><li>Dọn dẹp tài nguyên</li></ul> | 08/10/2025 | 08/10/2025 | Lab19 |
+| 5 | <ul><li>Xem bài về Transit Gateway</li><li>Lab20-01 → 20-03</li></ul> | 09/10/2025 | 09/10/2025 | Lab20.x |
+| 6 | <ul><li>Lab20-04 → 20-07: Attach, route, cleanup</li></ul> | 10/10/2025 | 10/10/2025 | Lab20 |
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 06/10/2025   | 10/10/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 06/10/2025   | 10/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 06/10/2025   | 10/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 06/10/2025   | 10/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 06/10/2025   | 10/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 5 Achievements:
 
-
-### Kết quả đạt được tuần 5:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Hiểu cách liên kết nhiều VPC với Peer và TGW.
+* Tự triển khai được hệ thống multi-VPC.
+* Test kết nối giữa các VPC thành công.

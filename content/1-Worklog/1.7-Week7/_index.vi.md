@@ -1,57 +1,30 @@
 ---
 title: "Worklog Tuần 7"
-
-weight: 1
+date: 2025-10-20
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
 
 
+### Week 7 Objectives:
 
-### Mục tiêu tuần 7:
+* Tìm hiểu sâu về S3.
+* Học về static website hosting.
+* Làm các lab về CloudFront, versioning, replication.
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+### Tasks to be carried out this week:
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | <ul><li>Xem phần S3 Access</li></ul> | 20/10/2025 | 20/10/2025 | Module 04 |
+| 3 | <ul><li>Static Website + CORS</li></ul> | 21/10/2025 | 21/10/2025 | Module 04 |
+| 4 | <ul><li>Lab57-02 → 07.3 (S3 + CloudFront)</li></ul> | 22/10/2025 | 22/10/2025 | Lab57 |
+| 5 | <ul><li>Versioning, Move Object, Replication</li></ul> | 23/10/2025 | 23/10/2025 | Lab57-08 → 11 |
+| 6 | <ul><li>Làm các lab còn lại của Module 04</li></ul> | 24/10/2025 | 24/10/2025 | Lab13, Lab14, Lab24, Lab25 |
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 20/10/2025   | 24/10/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 20/10/2025   | 24/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 20/10/2025   | 24/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 20/10/2025   | 24/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 20/10/2025   | 24/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 7 Achievements:
 
-
-### Kết quả đạt được tuần 7:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
+* Biết dùng S3 để host website.
+* Hiểu cách CloudFront tăng tốc độ truy cập.
+* Làm xong tất cả lab S3 trong Module 04.
 

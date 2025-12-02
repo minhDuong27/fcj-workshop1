@@ -1,124 +1,75 @@
 ---
 title: "Blog 1"
-
+date: 2025-10-16
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
 
+# Sử dụng Mô hình Ngôn ngữ Lớn (LLM) trên Amazon Bedrock cho thực thi tác vụ đa bước
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+**Bởi Bruno Klein, Mohammad Arbabshirani, và Rushabh Lokhande vào 02 Tháng 4 2025**  
+**Chủ đề:** Amazon Bedrock, Generative AI, Intermediate (200)
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Mục tiêu của bài viết này là cho bạn thấy cách sử dụng mô hình ngôn ngữ lớn (LLM) để thực hiện các tác vụ đòi hỏi suy luận và thực thi động nhiều bước. Ví dụ về các tác vụ này bao gồm: 
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+- “Thời gian nằm viện trung bình của bệnh nhân mắc [bệnh cụ thể] tại các bệnh viện khác nhau là bao lâu?”  
+- “Xu hướng kê đơn [thuốc cụ thể] khác nhau như thế nào giữa các khu vực khác nhau?”  
 
----
+Truy xuất những thông tin này truyền thống cần chuyên môn của các chuyên gia trí tuệ kinh doanh và kỹ sư dữ liệu, dẫn đến quy trình tốn thời gian và tiềm ẩn nhiều điểm nghẽn.
 
-## Hướng dẫn kiến trúc
+Tuy nhiên, tiến bộ trong LLM mở ra khả năng chia nhỏ các nhiệm vụ phức tạp thành một loạt các bước, sử dụng các công cụ để hoàn thành từng bước và đưa ra giải pháp cuối cùng.
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+## Công cụ và khả năng mở rộng
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+Thuật ngữ *công cụ* ở đây đề cập đến các khả năng bên ngoài hoặc API mà mô hình có thể truy cập để mở rộng chức năng của nó. Các công cụ này cho phép LLM:
 
-**Kiến trúc giải pháp bây giờ như sau:**
+- Truy xuất thông tin thời gian thực  
+- Chạy mã  
+- Duyệt web  
+- Tạo hình ảnh  
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Bằng cách sử dụng các công cụ, LLM có thể đưa ra kết quả chính xác hơn, nhận biết ngữ cảnh và hành động, hỗ trợ hiệu quả các truy vấn phức tạp.
 
----
+## Ví dụ giải pháp: truy xuất hồ sơ bệnh nhân
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+Chúng tôi sử dụng **Synthetic Patient Generation dataset** và chỉ dùng API thay vì text-to-SQL. Mã nguồn có sẵn trên GitHub.
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+### Tổng quan giải pháp
 
----
+Mục tiêu: trả lời chính xác câu hỏi phân tích đòi hỏi suy luận đa bước. Ví dụ tương tác:
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+User: Cho tôi tên đầu và tên cuối của bệnh nhân có ít vaccine nhất và số lượng vaccine của họ.
+AI: Bệnh nhân ít vaccine nhất là Sharleen176 Kulas532, số vaccine là 1.
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
 
----
+Các bước:
 
-## The pub/sub hub
+1. Lấy danh sách bệnh nhân và hồ sơ tiêm chủng.  
+2. Nhóm hồ sơ tiêm chủng theo `patient_id` và đếm số vaccine mỗi bệnh nhân.  
+3. Sắp xếp theo số vaccine tăng dần.  
+4. Giới hạn kết quả 1 bản ghi (bệnh nhân ít vaccine nhất).  
+5. Ghép với thông tin bệnh nhân để lấy tên đầu và tên cuối.  
+6. Chọn ra thông tin cần (tên đầu, tên cuối, số vaccine).
+   
+### Thiết lập dữ liệu
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+curl https://synthetichealth.github.io/synthea-sample-data/downloads/synthea_sample_data_csv_apr2020.zip > dataset.zip
+unzip dataset.zip
+mv csv dataset
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+Giải pháp được cấu trúc từ hai bước lõi: lập kế hoạch (plan) và thực thi (execute). Ở dạng đơn giản nhất, có thể biểu diễn như sơ đồ sau. 
+![image](/images/Ảnh 1 (2).png)
 
----
+Trong kịch bản phức tạp hơn, bạn có thể thêm nhiều lớp xác thực và cung cấp các API phù hợp để nâng cao tỷ lệ thành công của LLM.
 
-## Core microservice
+![image](/images/Ảnh 2 (1).png)
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+### Lập kế hoạch (Plan)
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+Trong giai đoạn Plan, LLM được cung cấp một tập các **chữ ký hàm (function signatures)** đã định nghĩa sẵn cùng mô tả ngắn gọn công dụng của mỗi hàm. Những chữ ký hàm này được xem như các công cụ mà LLM có thể sử dụng để xây dựng kế hoạch trả lời truy vấn của người dùng. Mục tiêu là để LLM suy luận tuần tự các bước cần thiết để đạt được câu trả lời, giống như cách một con người thực hiện.
 
----
+#### Tại sao giai đoạn lập kế hoạch quan trọng
 
-## Front door microservice
+Giai đoạn Plan rất quan trọng vì nó cho phép LLM tạo ra một chuỗi hành động có cấu trúc và logic để thực thi ở bước tiếp theo. Bằng việc lập kế hoạch, LLM có thể chia nhỏ các câu hỏi phức tạp thành các bước dễ quản lý, đảm bảo các API được gọi đúng thứ tự. Cách tiếp cận có cấu trúc này giúp giảm thiểu lỗi và tăng khả năng tạo ra kết quả chính xác.
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
-
----
-
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
-
----
-
-## Tính năng mới trong giải pháp
-
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn

@@ -1,124 +1,110 @@
 ---
 title: "Blog 2"
-
+date: 2025-01-01
 weight: 1
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
+# Enabling Observability-First Operations at ScaleEnhance Data Visibility with Cribl Search and Amazon Managed Grafana
+*by Rizwan Mushtaq, Kamilo "Kam" Amir, Sunil Ramachandra, and Aswin Vasudevan on 12 SEP 2025*
 
-
-# Getting Started with Healthcare Data Lakes: Using Microservices
-
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
-
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+Observability is no longer a “nice to have” — it is a prerequisite to ensure systems operate securely, efficiently, and at scale. With the growing volume of logs, metrics, and security events, collecting, processing, and visualizing data in an organized way has become a challenge for many organizations. AWS, in partnership with Cribl Search, provides a centralized, flexible, and customizable observability pipeline — transforming raw data into actionable insights to drive faster, more confident decision-making at scale.
 
 ---
 
 ## Architecture Guidance
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
-
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
-
-**The solution architecture is now as follows:**
-
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+Below are the main components and how the integration between Cribl Search and Amazon Managed Grafana works:
 
 ---
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
-
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+| component              | Main role                                                                                                                                                                                            |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Cribl Search           | Enables “in-place” search across multiple data sources ( Amazon S3, Cribl Lake, Amazon Security Lake, and AWS native services).<br /> No need to index all the data before searching.              |
+| Amazon Managed Grafana | A powerful visualization tool: dashboards, real-time monitoring, and drill-down metrics/logs for troubleshooting. <br />Integrated with a plugin for Cribl Search to query data directly from Cribl. |
 
 ---
 
-## Technology Choices and Communication Scope
+## Key Use Cases
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
 
----
+Some scenarios where this solution is particularly useful:
 
-## The Pub/Sub Hub
+1. **Cloud Infrastructure Monitoring**
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+   You can query data from AWS services via API or at rest, use Cribl to filter the required events, and then send them to a SIEM system or directly to Grafana dashboards to monitor health, resource performance, and costs.
+2. **Application Performance Management (APM)**
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+   Dashboards display latency, error rates, and user experience, with the ability to drill down into specific transactions. Grafana makes it clear and quick to identify application issues that need to be addressed.
+3. **Operations & Security (SecOps)**
 
----
+   Security events are displayed in dedicated dashboards; Cribl supports continuous monitoring, compliance reporting, threat detection, and investigation workflows — helping SOC teams respond quickly to incidents.
 
-## Core Microservice
+## Implementation Walkthrough
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+To set up and run the solution, the basic steps are as follows:
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+1. **Preparation**
+- An AWS account with administrative privileges.
+- An S3 bucket (e.g., to store VPC Flow Logs) configured properly so services can write to it.
+- A Cribl Cloud account and the necessary IAM/credentials.
+2. **Authentication Setup (API Auth)**
+- Create a token / API credentials in Cribl so that Grafana can connect securely.
+3. **Install Cribl Search Plugin in Grafana**
+- Go to the Plugins section in Amazon Managed Grafana, find the “Cribl Search” plugin, and add the connection using Cribl credentials.
+4. **Create Dashboards & Visualizations**
+- Example: view VPC Flow Logs from the last 15 minutes, grouped by log status per minute.
+  - Switch to table view to analyze specific logs, detect anomalies, and trace request paths.
+5. **Cleanup & Cost Management**
+- Delete unused resources: S3 bucket, Flow Log configurations, and temporary Cribl settings to avoid unnecessary costs.
 
----
-
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
 
 ---
 
-## Staging ER7 Microservice
+## Benefits & Challenges
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+**Benefits:**
+
+- Reduce unnecessary storage/routing costs since only meaningful data is processed in-depth.
+
+- Faster incident response & analysis with real-time dashboards and drill-down logs.
+
+- Better control & compliance: all data and security events can be monitored.
+
+- High flexibility: users can freely choose data sources, customize visualizations, and define routing needs.
+
+**Challenges:**
+
+- Proper security setup (credentials, access rights) is required to prevent data leaks or unauthorized access.
+
+- Data routing must be managed to avoid sending too much raw data to Grafana or SIEM.
+
+- Pipeline monitoring is necessary to ensure no misrouted, duplicated, or dropped messages.
 
 ---
+
+
 
 ## New Features in the Solution
 
 ### 1. AWS CloudFormation Cross-Stack References
+
 Example *outputs* in the core microservice:
+
 ```yaml
 Outputs:
-  Bucket:
-    Value: !Ref Bucket
+  CriblSearchDatasourceARN:
+    Value: !Ref CriblSearchDatasource
     Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
+      Name: !Sub ${AWS::StackName}-CriblSearchDatasource
+
+  GrafanaWorkspaceId:
+    Value: !Ref GrafanaWorkspace
     Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
+      Name: !Sub ${AWS::StackName}-GrafanaWorkspaceId
+
+  VPCFlowLogsBucket:
+    Value: !Ref VPCFlowLogsBucket
     Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+      Name: !Sub ${AWS::StackName}-VPCFlowLogsBucket
+```

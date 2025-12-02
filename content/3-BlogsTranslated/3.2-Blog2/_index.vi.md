@@ -1,84 +1,69 @@
 ---
 title: "Blog 2"
-
+date: 2025-01-01
 weight: 1
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
+# Kích hoạt hoạt động Đầu tiên về Quan sát ở quy mô lớn
 
+*by Rizwan Mushtaq, Kamilo "Kam" Amir, Sunil Ramachandra, and Aswin Vasudevan on 12 SEP 2025*
 
-
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
-
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
-
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Observability is no longer a “nice to have” — nó là điều kiện tiên quyết để đảm bảo hệ thống hoạt động an toàn, hiệu quả và có thể mở rộng. Với lượng log, metric và sự kiện bảo mật ngày càng lớn, việc thu thập, xử lý và trực quan hóa dữ liệu một cách có tổ chức trở thành một thách thức đối với nhiều tổ chức. AWS hợp tác với Cribl Search mang lại một pipeline observability tập trung, linh hoạt và có thể tùy chỉnh — biến dữ liệu thô thành thông tin có thể hành động để đưa ra quyết định nhanh hơn, tự tin hơn và ở quy mô lớn.
 
 ---
 
 ## Hướng dẫn kiến trúc
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Dưới đây là các thành phần chính và cách hoạt động của tích hợp giữa **Cribl Search** và **Amazon Managed Grafana**:
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
-
-**Kiến trúc giải pháp bây giờ như sau:**
-
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
-
----
-
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
-
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+| thành phần           | vai trò chính                                                                                                                                                                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Cribl Search           | Cho phép tìm kiếm “in-place” trên nhiều nguồn dữ liệu (ví dụ: Cribl Lake, Amazon Security Lake, các dịch vụ AWS native).<br />Không cần phải index toàn bộ dữ liệu trước khi tìm kiếm.         |
+| Amazon Managed Grafana | Công cụ trực quan hóa mạnh mẽ: làm dashboards, real-time monitoring, drill-down metrics/logs để phân tích sự cố. <br />Được tích hợp plugin cho Cribl Search để lấy dữ liệu trực tiếp từ Cribl. |
 
 ---
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+## Use-Cases nổi bật
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
 
----
+Một số kịch bản mà giải pháp này rất hữu dụng:
 
-## The pub/sub hub
+1. **Monitoring cơ sở hạ tầng đám mây**
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+   Bạn có thể truy vấn dữ liệu từ các dịch vụ AWS qua API, hoặc dữ liệu tại rest, rồi dùng Cribl để lọc sự kiện cần thiết, sau đó gửi tới hệ thống SIEM hoặc ngay vào dashboards Grafana để theo dõi health, hiệu suất tài nguyên, chi phí
+2. **Quản lý hiệu năng ứng dụng (APM)**
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+   Dashboards thể hiện latency, error rate, user experience, với khả năng drill-down vào các transaction cụ thể. Grafana giúp hiển thị rõ ràng và nhanh chóng những vấn đề ứng dụng cần được xử lý. 
+3. **Vận hành & bảo mật (SecOps)**
 
----
+   Việc hiển thị sự kiện bảo mật trong dashboard chuyên dụng; Cribl hỗ trợ continuous monitoring, compliance reporting, threat detection, investigation workflows. Giúp đội SOC đáp ứng nhanh khi có sự cố.
 
-## Core microservice
+## Cách thi hành (Walkthrough)
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+Để thiết lập và vận hành giải pháp, các bước cơ bản như sau:
+
+1. **Chuẩn bị**
+   * Có tài khoản AWS với quyền quản trị.
+   * Có bucket S3 (ví dụ để lưu VPC Flow Logs), cấu hình phù hợp để các dịch vụ có thể write vào.
+   * Tài khoản Cribl Cloud và IAM/credential cần thiết.
+2. **Cấu hình xác thực (API Auth)**
+   * Tạo token / API credentials trong Cribl để Grafana có thể kết nối an toàn. [ices, Inc.](https://aws.amazon.com/blogs/apn/enhance-data-visibility-with-cribl-search-and-amazon-managed-grafana/?utm_source=chatgpt.com)
+3. **Cài đặt plugin Cribl Search trong Grafana**
+   * Vào phần Plugins trong Amazon Managed Grafana, tìm plugin “Cribl Search”, thêm kết nối bằng credentials từ Cribl. [Amazon Web Services, Inc.](https://aws.amazon.com/blogs/apn/enhance-data-visibility-with-cribl-search-and-amazon-managed-grafana/?utm_source=chatgpt.com)
+4. **Tạo dashboard & visualization**
+   * Ví dụ: xem VPC Flow Logs trong 15 phút gần nhất, nhóm theo trạng thái log mỗi phút. [Amazon Web Services, Inc.](https://aws.amazon.com/blogs/apn/enhance-data-visibility-with-cribl-search-and-amazon-managed-grafana/?utm_source=chatgpt.com)
+   * Chuyển sang chế độ xem bảng (table view) để phân tích log cụ thể, tìm anomaly, trace đường đi của request. [Amazon Web Services, Inc.](https://aws.amazon.com/blogs/apn/enhance-data-visibility-with-cribl-search-and-amazon-managed-grafana/?utm_source=chatgpt.com)
+5. **Vệ sinh & chi phí**
+   * Xóa các resource không dùng: bucket S3, cấu hình Flow Logs, cấu hình tạm thời ở Cribl để hạn chế chi phí dư thừa.
 
 ---
 
 ## Front door microservice
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
+- Cung cấp API Gateway để tương tác REST bên ngoài
+- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**
 - Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
   1. SNS deduplication TTL chỉ 5 phút
   2. SNS FIFO yêu cầu SQS FIFO
@@ -88,11 +73,11 @@ Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:
 
 ## Staging ER7 microservice
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
+- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute
+- Step Functions Express Workflow để chuyển ER7 → JSON
 - Hai Lambda:
   1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
+  2. Parsing logic
 - Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
 
 ---
@@ -100,7 +85,9 @@ Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:
 ## Tính năng mới trong giải pháp
 
 ### 1. AWS CloudFormation cross-stack references
+
 Ví dụ *outputs* trong core microservice:
+
 ```yaml
 Outputs:
   Bucket:
@@ -123,3 +110,4 @@ Outputs:
     Value: !GetAtt Catalog.Arn
     Export:
       Name: !Sub ${AWS::StackName}-CatalogArn
+```

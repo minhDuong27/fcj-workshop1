@@ -1,21 +1,20 @@
 ---
 title: "Báo cáo thực tập"
-
+date: 2025-08-09
 weight: 1
 chapter: false
 ---
 
 # Báo cáo thực tập
 ### Thông tin sinh viên:
-&emsp; **Họ và tên:** Vu Nguyen Binh
+&emsp; **Họ và tên:** Lê Minh Dương
 
-&emsp; **Số điện thoại:** 0784216914
+&emsp; **Số điện thoại:** 0347622638
 
-&emsp; **Email:** vunguyenbinh25@gmail.com
+&emsp; **Email:** leduong5469@gmail.com
 
-&emsp; **Trường:** FPT University
-
-&emsp; **Ngành:** Information Assurance
+&emsp; **Trường:** Đại học FPT
+&emsp; **Ngành:** An Toàn Thông tin
 
 &emsp; **Lớp:** AWS082025
 
@@ -23,9 +22,9 @@ chapter: false
 
 &emsp; **Vị trí thực tập:** FCJ Cloud Intern
 
-&emsp; **Thời gian thực tập:** Từ ngày 12/08/2025 đến ngày 12/11/2025
+&emsp; **Thời gian thực tập:** Từ ngày 08/09/2025 đến ngày 12/12/2025
 
-![Ảnh đại diện của bạn](/images/avatar.jpg)
+![Ảnh đại diện của bạn](/images/Gemini_Generated_Image_o9rzw4o9rzw4o9rz.png)
 
 
 

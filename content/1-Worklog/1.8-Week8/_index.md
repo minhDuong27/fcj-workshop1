@@ -1,55 +1,30 @@
 ---
 title: "Week 8 Worklog"
-
-weight: 1
+date: 2025-10-27
+weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
 
-
-
 ### Week 8 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Understand AWS security fundamentals.
+* Practice IAM: users, roles, policies.
+* Work with Organizations, Identity Center, and KMS.
+* Complete major security labs.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 10/27/2025 | 10/31/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 10/27/2025 | 10/31/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 10/27/2025 | 10/31/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 10/27/2025 | 10/31/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Midterm test:** <br>&emsp; + Midterm test <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 31/10/2025 | 10/31/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | <ul><li>Learn IAM basics</li></ul> | 27/10/2025 | 27/10/2025 | Module 05 |
+| 3 | <ul><li>Role, policy, STS</li></ul> | 28/10/2025 | 28/10/2025 | IAM |
+| 4 | <ul><li>Organizations + Identity Center</li></ul> | 29/10/2025 | 29/10/2025 | AWS Org |
+| 5 | <ul><li>KMS basics + key creation</li></ul> | 30/10/2025 | 30/10/2025 | KMS |
+| 6 | <ul><li>Security labs: Lab18, 22, 27, 28, 30, 33</li></ul> | 31/10/2025 | 31/10/2025 | Module 05 Labs |
 
 ### Week 8 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Know how AWS security model works.
+* Created users, roles, and policies.
+* Used KMS for encryption.
+* Completed the main security labs.

@@ -1,7 +1,7 @@
 ---
 title: "Week 6 Worklog"
-
-weight: 1
+date: 2025-10-13
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
@@ -10,46 +10,21 @@ pre: " <b> 1.6. </b> "
 
 ### Week 6 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Start Module 03 – Compute.
+* Learn EC2 basics: AMI, Instance Type, EBS.
+* Do backup & Storage Gateway labs.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 10/13/2025 | 10/17/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 10/13/2025 | 10/17/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 10/13/2025 | 10/17/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 10/13/2025 | 10/17/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 10/13/2025 | 10/17/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | <ul><li>Watch EC2 introduction</li></ul> | 13/10/2025 | 13/10/2025 | Module 03 |
+| 3 | <ul><li>Lean about AMI, Instance Types, EBS volumes</li></ul> | 14/10/2025 | 14/10/2025 | 03-01-01 → 03-01-03 |
+| 4 | <ul><li>Practice User Data + Metadata</li></ul> | 15/10/2025 | 15/10/2025 | 03-01-05 → 03-01-06 |
+| 5 | <ul><li>Backup labs: Lab13-01 → Lab13-06</li></ul> | 16/10/2025 | 16/10/2025 | Lab13 |
+| 6 | <ul><li>Storage Gateway + S3 labs: Lab24 + Lab57</li></ul> | 17/10/2025 | 17/10/2025 | Lab24, Lab57 |
 
 ### Week 6 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Launched EC2, created AMI and snapshots.
+* Completed backup & restore labs.
+* Understood how EBS, metadata, and User Data work.

@@ -1,59 +1,48 @@
 ---
 title: "Worklog Tuần 1"
-
+date: 2025-08-09
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+
+### Mục tiêu Tuần 1:
+
+* Kết nối và làm quen với các thành viên của First Cloud Journey.
+* Hiểu các dịch vụ cơ bản của AWS, cách sử dụng AWS Management Console và AWS CLI.
+* Tạo một tài khoản AWS.
+* Xem video hướng dẫn cài đặt Hugo, Git, VSCode.
+* Học cách viết Markdown, học cách sử dụng Hugo.
+* Thực hành các lab trong First Cloud Journey.
+
+### Các công việc cần thực hiện trong tuần:
+| Ngày | Nhiệm vụ | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+| --- | -------- | ------------ | ---------------- | ------------------ |
+| 2   | <ul><li>Làm quen với các thành viên FCJ</li><li>Đọc và ghi chú lại quy định của đơn vị thực tập</li></ul> | 08/09/2025 | 08/09/2025 | |
+| 3   | <ul><li>Tìm hiểu về AWS và các loại dịch vụ:</li><ul><li>Compute</li><li>Storage</li><li>Networking</li><li>Database</li></ul></ul> | 09/09/2025 | 09/09/2025 | [CloudJourney](https://cloudjourney.awsstudygroup.com/) |
+| 4   | <ul><li>Tạo tài khoản AWS Free Tier</li><li>Học về AWS Console & AWS CLI</li><li><b>Thực hành:</b><ul><li>Tạo tài khoản AWS</li><li>Cài đặt & cấu hình AWS CLI</li><li>Cách sử dụng AWS CLI</li></ul></li></ul> | 10/09/2025 | 10/09/2025 | [AWS Account Setup](https://000001.awsstudygroup.com/1-create-new-aws-account/) |
+| 5   | <ul><li>Học cách viết Markdown và sử dụng Hugo</li></ul> | 11/09/2025 | 11/09/2025 | [YouTube Guide](https://youtu.be/mXRqgMr_97U?si=WeNYkQDvgZFIkF3r) |
+| 6   | <ul><li><b>Thực hành:</b><ul><li>Làm các lab trong First Cloud Journey</li></ul></li></ul> | 12/09/2025 | 12/09/2025 | [First Cloud Journey](https://master.d31mm2rc5713dr.amplifyapp.com/) |
 
 
-### Mục tiêu tuần 1:
+### Thành tựu Tuần 1:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
-
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 1   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             |08/09/2025   | 12/09/2025      |
-| 2   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 08/09/2025   | 12/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 3   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 08/09/2025   | 12/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 08/09/2025   | 12/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 08/09/2025   | 12/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
-
-### Kết quả đạt được tuần 1:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
+* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản:
   * Compute
   * Storage
   * Networking 
   * Database
-  * ...
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
+* Đã tạo và cấu hình thành công một tài khoản AWS Free Tier.
+* Làm quen với AWS Management Console, biết cách tìm kiếm, truy cập và sử dụng dịch vụ thông qua giao diện web.
+* Đã cài đặt và cấu hình thành công AWS CLI trên máy tính, bao gồm:
   * Access Key
   * Secret Key
-  * Region mặc định
-  * ...
+  * Default Region
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+* Cài đặt thành công Hugo, Git và VSCode:
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+* Biết cách sử dụng Hugo, Git và VSCode.
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
+* Biết cách viết Markdown và đã viết thành công Worklog Tuần 1.
 

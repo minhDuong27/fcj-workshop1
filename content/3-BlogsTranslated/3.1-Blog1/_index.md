@@ -1,124 +1,151 @@
 ---
 title: "Blog 1"
-
+date: 2025-10-16
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
 
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Enabling customers to deliver production-ready AI agents at scale
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+*by Swami Sivasubramanian on 16 JUL 2025 in Amazon Bedrock, Amazon Connect, Amazon Nova, Amazon Q, Amazon Simple Storage Service (S3), Announcements, AWS Inferentia, AWS Trainium, AWS Transform, Featured, Thought Leadership*
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+AI agents are poised to have an impact as transformative as the internet itself, enabling automation, solving complex problems, and driving innovation. However, bringing AI agents into production at scale requires more than just training large models—it demands an architecture that ensures **security, reliability, scalability, and flexibility**.
+
+AWS addresses this challenge with a **microservices-based** architecture: each agent capability (memory, identity, observability, tool access, customization) is encapsulated as a small, independent service, loosely coupled via a hub. This decomposition improves agility, makes it easier to add or replace components, and helps organizations focus on delivering business value instead of building infrastructure from scratch.
 
 ---
 
 ## Architecture Guidance
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+Compared to monolithic approaches, AWS decomposes agent functionality into multiple microservices:
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+**AgentCore**: the serverless runtime that orchestrates agents.
 
-**The solution architecture is now as follows:**
+**Functional services**: memory, identity, observability, gateway, code interpreter.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+**Model customization service**: Amazon Nova fine-tuning microservice.
 
----
+This design allows customers to freely choose models, integrate existing data sources, and connect seamlessly with open-source frameworks.
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
 
 ---
 
 ## Technology Choices and Communication Scope
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
+| Communication scope                       | Technologies                                                                            |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+| Within a single microservice              | AWS Lambda, Step Functions                                                                 |
+| Between microservices in one agent        | Amazon SNS, AWS CloudFormation cross-stack references                                      |
+| Between services/agent                    | Amazon EventBridge, API Gateway, AWS Cloud Map                                             |
 
 ---
 
 ## The Pub/Sub Hub
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+The **pub/sub hub** pattern is central to AWS’s approach:
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+- Each microservice interacts only with the hub, not directly with other microservices.
+
+- Results, errors, or intermediate outputs are pushed back into the hub for further processing.
+
+- Benefits: reduces synchronous calls, scales easily, keeps components loosely coupled.
+
+-  Drawback: requires monitoring and coordination to prevent misrouted or duplicate messages.
 
 ---
 
 ## Core Microservice
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+The foundation of the solution, providing the data and communication layer:
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+- **Amazon S3** for data and artifacts.
+
+- **Amazon DynamoDB** for metadata and catalog.
+
+- **AWS Lambda** for consistent writes and runtime logic.
+
+- **Amazon SNS** Topic as the central hub.
+
+This ensures all writes to the data lake and catalog are controlled and consistent.
 
 ---
 
 ## Front Door Microservice
 
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+The primary entry point for external requests:
+
+- Amazon API Gateway provides a REST interface.
+
+- Amazon Cognito (OIDC) manages authentication and authorization.
+
+- Deduplication mechanism built with DynamoDB, avoiding SNS FIFO limitations and enabling proactive duplicate detection.
 
 ---
 
-## Staging ER7 Microservice
+## Processing Microservices
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+Agents often require specialized tools such as browsing, code execution, or search. These are implemented as microservices:
+
+- Lambda triggers subscribe to the hub and filter messages.
+
+- Step Functions orchestrate pipelines (e.g., preprocessing, model invocation).
+
+- Lambda functions execute specific parsing or transformation logic.
+
+- Results or errors are returned to the hub for downstream services.
+
+---
+
+## Model Customization Microservice (Nova)
+
+Fine-tuning is handled as a dedicated microservice:
+
+- Supports both full fine-tuning and parameter-efficient techniques.
+
+- Methods include SFT, DPO, RLHF, CPT, and Knowledge Distillation.
+
+- Runs independently, so updates or retraining do not disrupt the overall runtime.
 
 ---
 
 ## New Features in the Solution
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
+### 1. Amazon Bedrock AgentCore
+
+- Serverless runtime for agents.
+
+- Session isolation and observability.
+
+- Integrates with open-source frameworks.
+
+### 2. Expanded Tooling Support
+
+- Microservices for memory, identity, gateway, browser, and interpreter.
+
+- Each is modular and replaceable.
+
+### 3. Customer Adoption
+
+- Enterprises like Itaú Unibanco, Innovaccer, Boomi, Box, and Epsilon are already adopting this architecture for scalable production deployment.
+
+
 ```yaml
 Outputs:
-  Bucket:
-    Value: !Ref Bucket
+  AgentCoreTopic:
+    Value: !Ref AgentCoreTopic
     Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
+      Name: !Sub ${AWS::StackName}-AgentCoreTopic
+
+  AgentMemoryTable:
+    Value: !Ref AgentMemoryTable
     Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
+      Name: !Sub ${AWS::StackName}-AgentMemoryTable
+
+  NovaCustomizationJob:
+    Value: !Ref NovaCustomizationJob
     Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+      Name: !Sub ${AWS::StackName}-NovaCustomizationJob
+

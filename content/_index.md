@@ -1,6 +1,6 @@
 ---
 title: "Internship Report"
-
+date: 2025-08-09
 weight: 1
 chapter: false
 ---
@@ -9,17 +9,16 @@ chapter: false
 # Internship Report
 
 
-
 ### Student Information:
-&emsp; **Full Name:** Vu Nguyen Binh
+&emsp; **Full Name:** Le Minh Duong
 
-&emsp; **Phone Number:** 0784216914 
+&emsp; **Phone Number:** 0347622638
 
-&emsp; **Email:** vunguyenbinh25@gmail.com
+&emsp; **Email:** leduong5469@gmail.com
 
 &emsp; **University:** FPT University
 
-&emsp; **Major:** Information Assurance
+&emsp; **Major:** Information security
 
 &emsp; **Class:** AWS082025
 
@@ -27,9 +26,9 @@ chapter: false
 
 &emsp; **Internship Position:** FCJ Cloud Intern
 
-&emsp; **Internship Duration:** From 08/09/2025 to 8/12/2025
+&emsp; **Internship Duration:** From 08/09/2025 to 12/12/2025
 
-![Your profile picture](/images/avatar.jpg)
+![Your profile picture](/images/Gemini_Generated_Image_o9rzw4o9rzw4o9rz.png)
 
 ### Report Content
 

@@ -1,56 +1,30 @@
 ---
 title: "Worklog Tuần 6"
-
-weight: 1
+date: 2025-10-13
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
 
 
-### Mục tiêu tuần 6:
+### Week 6 Objectives:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Bắt đầu Module 03 – Compute.
+* Hiểu cách EC2 hoạt động.
+* Học về AMI, Instance Type, EBS, Metadata, User Data.
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 13/10/2025   | 17/10/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 13/10/2025   | 17/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/10/2025   | 17/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 13/10/2025   | 17/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 13/10/2025   | 17/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to be carried out this week:
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | <ul><li>Xem EC2 overview + cơ chế hoạt động</li></ul> | 13/10/2025 | 13/10/2025 | Module 03 |
+| 3 | <ul><li>Học về AMI, Instance Type, EBS</li></ul> | 14/10/2025 | 14/10/2025 | 03-01-01 → 03-01-03 |
+| 4 | <ul><li>User Data + Metadata</li></ul> | 15/10/2025 | 15/10/2025 | 03-01-05 → 03-01-06 |
+| 5 | <ul><li>Lab EC2 Backup: Lab13-01 → Lab13-06</li></ul> | 16/10/2025 | 16/10/2025 | Lab13.x |
+| 6 | <ul><li>Lab Storage Gateway + S3: Lab24 + Lab57 phần đầu</li></ul> | 17/10/2025 | 17/10/2025 | Lab24, Lab57 |
 
+### Week 6 Achievements:
 
-### Kết quả đạt được tuần 6:
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Hiểu cơ bản cách 1 VM chạy trên AWS.
+* Thử nghiệm launch EC2, tạo AMI và snapshot.
+* Làm xong backup lab và Storage Gateway cơ bản.    

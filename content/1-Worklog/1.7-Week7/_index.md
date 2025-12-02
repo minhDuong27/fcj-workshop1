@@ -1,7 +1,7 @@
 ---
 title: "Week 7 Worklog"
-
-weight: 1
+date: 2025-10-20
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
@@ -10,46 +10,21 @@ pre: " <b> 1.7. </b> "
 
 ### Week 7 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Learn everything about S3.
+* Build a static website on S3.
+* Practice CloudFront, versioning, replication.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 10/20/2025 | 10/24/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 10/20/2025 | 10/24/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 10/20/2025 | 10/24/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 10/20/2025 | 10/24/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 10/20/2025 | 10/24/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | <ul><li>Study S3 access control</li></ul> | 20/10/2025 | 20/10/2025 | Module 04 |
+| 3 | <ul><li>Learn static hosting + CORS</li></ul> | 21/10/2025 | 21/10/2025 | Module 04 |
+| 4 | <ul><li>Lab57-02 → 07.3: S3 + CloudFront</li></ul> | 22/10/2025 | 22/10/2025 | Lab57 |
+| 5 | <ul><li>Versioning + Replication labs</li></ul> | 23/10/2025 | 23/10/2025 | Lab57-08 → 11 |
+| 6 | <ul><li>Finish Module 04 labs</li></ul> | 24/10/2025 | 24/10/2025 | Module 04 Labs |
 
 ### Week 7 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Successfully hosted a website on S3.
+* Configured CloudFront distribution.
+* Learned versioning, object movement, and multi-region replication.
