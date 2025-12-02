@@ -1,4 +1,4 @@
-baseURL = "https://minhDuong27.github.io/FCJ-AWS-REPORT/"
+baseURL = "https://minhDuong27.github.io/FCJ-WORKSHOP-REPORT/"
 publishDir="public"
 relativeURLs = true
 canonifyURLs = true
