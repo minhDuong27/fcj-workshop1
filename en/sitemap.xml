@@ -2,6 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.1-workshop-overview/</loc>
+    <lastmod>2025-12-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.1-workshop-overview/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.1-workshop-overview/"
+                />
+  </url><url>
     <loc>https://minhDuong27.github.io/fcj-workshop1/4-eventparticipated/4.1-event1/</loc>
     <lastmod>2025-11-15T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -67,40 +80,56 @@
                 href="https://minhDuong27.github.io/fcj-workshop1/1-worklog/"
                 />
   </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/</loc>
+    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.5-closed-loop-devsecops/</loc>
+    <lastmod>2025-12-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.5-closed-loop-devsecops/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.5-closed-loop-devsecops/"
                 />
   </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.1-workshop-overview/</loc>
+    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-lambda-and-notification/</loc>
+    <lastmod>2025-12-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.1-workshop-overview/"
+                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.4-lambda-and-notification/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.1-workshop-overview/"
+                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-lambda-and-notification/"
                 />
   </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/5.4.1-prepare/</loc>
+    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.2-pipline-flow/</loc>
+    <lastmod>2025-12-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
+                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.2-pipline-flow/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
+                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.2-pipline-flow/"
+                />
+  </url><url>
+    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.3-sonarqube-analysis/</loc>
+    <lastmod>2025-12-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.3-sonarqube-analysis/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.3-sonarqube-analysis/"
                 />
   </url><url>
     <loc>https://minhDuong27.github.io/fcj-workshop1/4-eventparticipated/4.2-event2/</loc>
@@ -155,42 +184,6 @@
                 href="https://minhDuong27.github.io/fcj-workshop1/2-proposal/"
                 />
   </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
-                />
-  </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.2-prerequiste/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.2-prerequiste/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.2-prerequiste/"
-                />
-  </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
-                />
-  </url><url>
     <loc>https://minhDuong27.github.io/fcj-workshop1/4-eventparticipated/4.3-event3/</loc>
     <lastmod>2025-11-29T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -243,30 +236,6 @@
                 href="https://minhDuong27.github.io/fcj-workshop1/3-blogstranslated/"
                 />
   </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.3-s3-vpc/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.3-s3-vpc/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.3-s3-vpc/"
-                />
-  </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
-                />
-  </url><url>
     <loc>https://minhDuong27.github.io/fcj-workshop1/1-worklog/1.4-week4/</loc>
     <lastmod>2025-09-29T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -293,28 +262,17 @@
                 href="https://minhDuong27.github.io/fcj-workshop1/4-eventparticipated/"
                 />
   </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/</loc>
+    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/</loc>
+    <lastmod>2025-12-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.4-s3-onprem/"
+                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/"
-                />
-  </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/"
                 />
   </url><url>
     <loc>https://minhDuong27.github.io/fcj-workshop1/1-worklog/1.5-week5/</loc>
@@ -330,30 +288,6 @@
                 href="https://minhDuong27.github.io/fcj-workshop1/1-worklog/1.5-week5/"
                 />
   </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.5-policy/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.5-policy/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.5-policy/"
-                />
-  </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/"
-                />
-  </url><url>
     <loc>https://minhDuong27.github.io/fcj-workshop1/1-worklog/1.6-week6/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -365,18 +299,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://minhDuong27.github.io/fcj-workshop1/1-worklog/1.6-week6/"
-                />
-  </url><url>
-    <loc>https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.6-cleanup/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://minhDuong27.github.io/fcj-workshop1/vi/5-workshop/5.6-cleanup/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://minhDuong27.github.io/fcj-workshop1/5-workshop/5.6-cleanup/"
                 />
   </url><url>
     <loc>https://minhDuong27.github.io/fcj-workshop1/6-self-evaluation/</loc>

@@ -1,18 +1,31 @@
 ---
 title : "Introduction"
-
+date :  2025-12-01
 weight : 1 
 chapter : false
 pre : " <b> 5.1. </b> "
 ---
 
-#### VPC endpoints
-+ **VPC endpoints** are virtual devices. They are horizontally scaled, redundant, and highly available VPC components. They allow communication between your compute resources and AWS services without imposing availability risks.
-+ Compute resources running in VPC can access  **Amazon S3**  using a Gateway endpoint. PrivateLink interface endpoints can be used by compute resources running in VPC or on-premises.
+# DevSecOps Pipeline Overview (GitLab → AWS)
 
-#### Workshop overview
-In this workshop, you will use two VPCs. 
-+ **"VPC Cloud"** is for cloud resources such as a  **Gateway endpoint** and an EC2 instance to test with. 
-+ **"VPC On-Prem"** simulates an on-premises environment such as a factory or corporate datacenter. An EC2 instance running strongSwan VPN software has been deployed in "VPC On-prem" and automatically configured to establish a Site-to-Site VPN tunnel with AWS Transit Gateway. This VPN simulates connectivity from an on-premises location to the AWS cloud. To minimize costs, only one VPN instance is provisioned to support this workshop. When planning VPN connectivity for your production workloads, AWS recommends using multiple VPN devices for high availability.
+### Pipeline goals:
+- Automate the entire build process – security scanning – error notification.
+- Detect bugs and security vulnerabilities early as soon as dev commits code.
+
+Create a closed DevSecOps loop: Commit → Scan → Notify → Fix → Commit again.
+
+### Flow summary:
+1. Dev commits code to GitLab (main branch).
+2. AWS CodePipeline receives events and triggers the pipeline.
+3. CodeBuild runs Sonar Scanner to analyze the source code.
+4. SonarQube on EC2 receives scan results from Scanner.
+5. SonarQube sends Webhook → API Gateway → Lambda.
+6. Lambda processes data → sends notification via SNS → dev email.
+7. Dev receives bug report → Fix → Commit → go back to loop.
+
+### The system ensures:
+- Automate security testing.
+- Improve source code quality.
+- Reduce security risks and logic errors.
 
 ![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
