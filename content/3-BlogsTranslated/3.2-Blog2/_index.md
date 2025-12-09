@@ -6,7 +6,6 @@ chapter: false
 pre: "<b> 3.2. </b>"
 ---
 
-# Updated Carbon Methodology for the AWS Customer Carbon Footprint Tool  
 *(Based on the official AWS update from April 23, 2025)*
 
 To support customers on their sustainability journey, AWS launched the **Customer Carbon Footprint Tool (CCFT)** in 2022. CCFT helps customers track and evaluate carbon emissions resulting from their AWS usage. It includes Scope 1 and Scope 2 emissions according to the Greenhouse Gas Protocol, covering all AWS services such as Amazon EC2, Amazon S3, AWS Lambda, and more.

@@ -6,7 +6,6 @@ chapter: false
 pre: "<b> 3.3. </b>"
 ---
 
-# Sử dụng thông tin tham chiếu dịch vụ AWS để tự động hóa luồng công việc quản lý chính sách
 
 AWS cung cấp một bộ tài liệu tham chiếu dịch vụ (AWS service reference information) nhằm hỗ trợ doanh nghiệp quản lý việc sử dụng dịch vụ AWS một cách bảo mật và hiệu quả. Bộ tham chiếu này bao gồm thông tin chi tiết về quyền IAM, dữ liệu, API, hành động, và điều kiện của từng dịch vụ. Khách hàng có thể sử dụng tập dữ liệu này để tự động hóa quy trình tạo, đánh giá và quản lý chính sách IAM.
 

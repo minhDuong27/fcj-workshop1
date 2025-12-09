@@ -6,7 +6,7 @@ chapter: false
 pre: "<b> 3.3. </b>"
 ---
 
-# Using AWS Service Reference Information to Automate Policy Management Workflows
+
 
 AWS provides a comprehensive service reference dataset that helps organizations manage their AWS service usage more securely and efficiently. This dataset includes detailed information about IAM permissions, data, APIs, supported actions, and conditions for every AWS service. Customers can use this dataset to automate the creation, review, and management of IAM policies.
 

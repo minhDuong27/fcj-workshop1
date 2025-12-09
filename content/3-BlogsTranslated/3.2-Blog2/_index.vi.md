@@ -6,7 +6,7 @@ chapter: false
 pre: "<b> 3.2. </b>"
 ---
 
-# Cập nhật Phương pháp Carbon cho Công cụ Dấu chân Carbon của Khách hàng AWS  
+
 *(Theo tài liệu gốc AWS, cập nhật ngày 23/04/2025)*
 
 Để hỗ trợ hành trình bền vững của khách hàng, AWS đã ra mắt Công cụ Dấu chân Carbon của Khách hàng (Customer Carbon Footprint Tool – CCFT) vào năm 2022. CCFT giúp khách hàng theo dõi, đo lường và xem xét lượng khí thải carbon phát sinh từ việc sử dụng AWS, bao gồm khí thải Scope 1 và Scope 2 theo chuẩn Greenhouse Gas Protocol. Các số liệu được tính cho toàn bộ dải dịch vụ AWS như Amazon EC2, Amazon S3, AWS Lambda và nhiều dịch vụ khác.
