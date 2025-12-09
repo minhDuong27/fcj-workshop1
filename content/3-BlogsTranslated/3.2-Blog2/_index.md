@@ -1,110 +1,117 @@
 ---
-title: "Blog 2"
-date: 2025-01-01
-weight: 1
+title: "Updated Carbon Methodology for the AWS Customer Carbon Footprint Tool (CCFT)"
+date: 2025-10-16
+weight: 2
 chapter: false
-pre: " <b> 3.2. </b> "
----
-# Enabling Observability-First Operations at ScaleEnhance Data Visibility with Cribl Search and Amazon Managed Grafana
-*by Rizwan Mushtaq, Kamilo "Kam" Amir, Sunil Ramachandra, and Aswin Vasudevan on 12 SEP 2025*
-
-Observability is no longer a “nice to have” — it is a prerequisite to ensure systems operate securely, efficiently, and at scale. With the growing volume of logs, metrics, and security events, collecting, processing, and visualizing data in an organized way has become a challenge for many organizations. AWS, in partnership with Cribl Search, provides a centralized, flexible, and customizable observability pipeline — transforming raw data into actionable insights to drive faster, more confident decision-making at scale.
-
+pre: "<b> 3.2. </b>"
 ---
 
-## Architecture Guidance
+# Updated Carbon Methodology for the AWS Customer Carbon Footprint Tool  
+*(Based on the official AWS update from April 23, 2025)*
 
-Below are the main components and how the integration between Cribl Search and Amazon Managed Grafana works:
+To support customers on their sustainability journey, AWS launched the **Customer Carbon Footprint Tool (CCFT)** in 2022. CCFT helps customers track and evaluate carbon emissions resulting from their AWS usage. It includes Scope 1 and Scope 2 emissions according to the Greenhouse Gas Protocol, covering all AWS services such as Amazon EC2, Amazon S3, AWS Lambda, and more.
 
----
+Today, AWS announces three updates to CCFT:
 
-| component              | Main role                                                                                                                                                                                            |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Cribl Search           | Enables “in-place” search across multiple data sources ( Amazon S3, Cribl Lake, Amazon Security Lake, and AWS native services).<br /> No need to index all the data before searching.              |
-| Amazon Managed Grafana | A powerful visualization tool: dashboards, real-time monitoring, and drill-down metrics/logs for troubleshooting. <br />Integrated with a plugin for Cribl Search to query data directly from Cribl. |
+1. Easier access to carbon data through Billing and Cost Management Data Exports.  
+2. Detailed carbon data broken down by AWS Region.  
+3. An updated allocation methodology (v2.0), independently assured by APEX.
+
+Starting January 2025, CCFT uses methodology v2.0. Data from December 2024 and earlier will continue using v1.0.
 
 ---
 
-## Key Use Cases
+# 1. Easier Data Access
 
+Customers can now export CCFT carbon data via **AWS Data Exports**.
 
-Some scenarios where this solution is particularly useful:
+Key features:
 
-1. **Cloud Infrastructure Monitoring**
+- Provides emission estimates for all accounts under AWS Organizations.  
+- Monthly automated exports delivered to Amazon S3 in CSV or Parquet.  
+- First export includes up to 38 months of historical data.  
 
-   You can query data from AWS services via API or at rest, use Cribl to filter the required events, and then send them to a SIEM system or directly to Grafana dashboards to monitor health, resource performance, and costs.
-2. **Application Performance Management (APM)**
-
-   Dashboards display latency, error rates, and user experience, with the ability to drill down into specific transactions. Grafana makes it clear and quick to identify application issues that need to be addressed.
-3. **Operations & Security (SecOps)**
-
-   Security events are displayed in dedicated dashboards; Cribl supports continuous monitoring, compliance reporting, threat detection, and investigation workflows — helping SOC teams respond quickly to incidents.
-
-## Implementation Walkthrough
-
-To set up and run the solution, the basic steps are as follows:
-
-1. **Preparation**
-- An AWS account with administrative privileges.
-- An S3 bucket (e.g., to store VPC Flow Logs) configured properly so services can write to it.
-- A Cribl Cloud account and the necessary IAM/credentials.
-2. **Authentication Setup (API Auth)**
-- Create a token / API credentials in Cribl so that Grafana can connect securely.
-3. **Install Cribl Search Plugin in Grafana**
-- Go to the Plugins section in Amazon Managed Grafana, find the “Cribl Search” plugin, and add the connection using Cribl credentials.
-4. **Create Dashboards & Visualizations**
-- Example: view VPC Flow Logs from the last 15 minutes, grouped by log status per minute.
-  - Switch to table view to analyze specific logs, detect anomalies, and trace request paths.
-5. **Cleanup & Cost Management**
-- Delete unused resources: S3 bucket, Flow Log configurations, and temporary Cribl settings to avoid unnecessary costs.
-
+Pre-Dec 2024 data uses v1.0; January 2025 onward uses v2.0.
 
 ---
 
-## Benefits & Challenges
+# 2. Regional Carbon Granularity
 
-**Benefits:**
+Customers can now view carbon emissions broken down by **AWS Region**.  
+CloudFront usage is grouped under **Global Services**.
 
-- Reduce unnecessary storage/routing costs since only meaningful data is processed in-depth.
+This enhancement allows customers to:
 
-- Faster incident response & analysis with real-time dashboards and drill-down logs.
-
-- Better control & compliance: all data and security events can be monitored.
-
-- High flexibility: users can freely choose data sources, customize visualizations, and define routing needs.
-
-**Challenges:**
-
-- Proper security setup (credentials, access rights) is required to prevent data leaks or unauthorized access.
-
-- Data routing must be managed to avoid sending too much raw data to Grafana or SIEM.
-
-- Pipeline monitoring is necessary to ensure no misrouted, duplicated, or dropped messages.
+- Identify regions contributing the most carbon emissions  
+- Make better workload placement decisions  
 
 ---
 
+# 3. Updated Methodology v2.0
 
+Customers often use services across many AWS Regions, making carbon attribution complex.
 
-## New Features in the Solution
+Methodology v2.0 is aligned with industry standards including:
 
-### 1. AWS CloudFormation Cross-Stack References
+- GHG Protocol Corporate Standard  
+- GHG Protocol Product Standard  
+- ISO 14040/44 (Life Cycle Assessment)  
+- ISO 14067 (Product Carbon Footprint)  
+- ICT Sector Guidance  
 
-Example *outputs* in the core microservice:
+---
 
-```yaml
-Outputs:
-  CriblSearchDatasourceARN:
-    Value: !Ref CriblSearchDatasource
-    Export:
-      Name: !Sub ${AWS::StackName}-CriblSearchDatasource
+## Scope 1 Overview
 
-  GrafanaWorkspaceId:
-    Value: !Ref GrafanaWorkspace
-    Export:
-      Name: !Sub ${AWS::StackName}-GrafanaWorkspaceId
+Scope 1 includes direct emissions from AWS-owned or controlled sources such as backup generators.  
+AWS collects annual Scope 1 operational data, calculates emissions at site level, then aggregates them into clusters (AWS Regions or CloudFront edge clusters).
 
-  VPCFlowLogsBucket:
-    Value: !Ref VPCFlowLogsBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-VPCFlowLogsBucket
-```
+---
+
+## Scope 2 Overview
+
+Scope 2 includes indirect emissions from purchased electricity.
+
+CCFT uses:
+
+- **Market-based** methodology  
+- Geographic emission factors  
+- Grid mix and carbon intensity values verified annually  
+
+It follows the prioritization rules of the Greenhouse Gas Protocol.
+
+---
+
+## Allocation Model v2.0
+
+Emission allocation follows three steps:
+
+1. Allocate cluster-level emissions to server racks.  
+2. Allocate rack emissions to AWS services based on resource usage and service dependencies.  
+3. Allocate service emissions to individual customer accounts.
+
+Some customers may see changes in their totals due to improved accuracy.
+
+---
+
+## Three Key Updates in Methodology v2.0
+
+1. **Unused capacity is now allocated to all AWS customers.**  
+   Carbon associated with unused server capacity is distributed proportionally, as required by GHG Protocol and ISO standards.
+
+2. **Improved allocation logic for services without dedicated hardware**, such as AWS Lambda or Amazon Redshift.
+
+3. **Updated allocation of shared overhead**, including networking racks and AWS Region expansions.
+
+---
+
+# Moving Forward
+
+AWS will continue improving CCFT as new climate science, data, and customer needs evolve.
+
+---
+
+# Climate Pledge Commitment
+
+AWS remains committed to reaching **net-zero carbon by 2040**.  
+To learn more, visit the AWS sustainability site.

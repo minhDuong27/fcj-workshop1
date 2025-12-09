@@ -1,151 +1,158 @@
 ---
-title: "Blog 1"
+title: "Using Large Language Models on Amazon Bedrock for Multi-step Task Execution"
 date: 2025-10-16
 weight: 1
 chapter: false
-pre: " <b> 3.1. </b> "
+pre: "<b> 3.1. </b>"
 ---
 
-
-# Enabling customers to deliver production-ready AI agents at scale
-
-*by Swami Sivasubramanian on 16 JUL 2025 in Amazon Bedrock, Amazon Connect, Amazon Nova, Amazon Q, Amazon Simple Storage Service (S3), Announcements, AWS Inferentia, AWS Trainium, AWS Transform, Featured, Thought Leadership*
-
-AI agents are poised to have an impact as transformative as the internet itself, enabling automation, solving complex problems, and driving innovation. However, bringing AI agents into production at scale requires more than just training large models—it demands an architecture that ensures **security, reliability, scalability, and flexibility**.
-
-AWS addresses this challenge with a **microservices-based** architecture: each agent capability (memory, identity, observability, tool access, customization) is encapsulated as a small, independent service, loosely coupled via a hub. This decomposition improves agility, makes it easier to add or replace components, and helps organizations focus on delivering business value instead of building infrastructure from scratch.
+This article explains how to use **Large Language Models (LLMs)** on **Amazon Bedrock** to carry out analytical tasks that require multi-step reasoning and external APIs. The goal is to convert complex questions into a structured **Plan → Execute** workflow that is predictable and scalable.
 
 ---
 
-## Architecture Guidance
+## 1. Background
 
-Compared to monolithic approaches, AWS decomposes agent functionality into multiple microservices:
+Business analytics questions are typically complex, such as:
 
-**AgentCore**: the serverless runtime that orchestrates agents.
+- “What is the average hospital stay for patients with a specific condition across hospitals?”
+- “How do prescription trends for a particular medication differ across regions?”
 
-**Functional services**: memory, identity, observability, gateway, code interpreter.
-
-**Model customization service**: Amazon Nova fine-tuning microservice.
-
-This design allows customers to freely choose models, integrate existing data sources, and connect seamlessly with open-source frameworks.
-
-
+Traditional solutions require BI experts and data engineers.  
+With **LLMs + tools**, we can automate and accelerate these workflows.
 
 ---
 
-## Technology Choices and Communication Scope
+## 2. Tools in the LLM Context
 
-| Communication scope                       | Technologies                                                                            |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | AWS Lambda, Step Functions                                                                 |
-| Between microservices in one agent        | Amazon SNS, AWS CloudFormation cross-stack references                                      |
-| Between services/agent                    | Amazon EventBridge, API Gateway, AWS Cloud Map                                             |
+Tools are external capabilities the LLM can call, such as:
 
----
+- APIs for real-time data  
+- Functions for computation or data processing  
+- Filtering, grouping, or joining data  
 
-## The Pub/Sub Hub
-
-The **pub/sub hub** pattern is central to AWS’s approach:
-
-- Each microservice interacts only with the hub, not directly with other microservices.
-
-- Results, errors, or intermediate outputs are pushed back into the hub for further processing.
-
-- Benefits: reduces synchronous calls, scales easily, keeps components loosely coupled.
-
--  Drawback: requires monitoring and coordination to prevent misrouted or duplicate messages.
+Using tools allows the LLM to produce **accurate, contextual, and actionable** outputs.
 
 ---
 
-## Core Microservice
+## 3. Example Interaction
 
-The foundation of the solution, providing the data and communication layer:
+User: “Who is the patient with the lowest number of vaccines?”  
+AI: “The patient is Sharleen176 Kulas532 with 1 vaccine.”
 
-- **Amazon S3** for data and artifacts.
+Steps performed:
 
-- **Amazon DynamoDB** for metadata and catalog.
-
-- **AWS Lambda** for consistent writes and runtime logic.
-
-- **Amazon SNS** Topic as the central hub.
-
-This ensures all writes to the data lake and catalog are controlled and consistent.
-
----
-
-## Front Door Microservice
-
-The primary entry point for external requests:
-
-- Amazon API Gateway provides a REST interface.
-
-- Amazon Cognito (OIDC) manages authentication and authorization.
-
-- Deduplication mechanism built with DynamoDB, avoiding SNS FIFO limitations and enabling proactive duplicate detection.
+1. Retrieve patient data  
+2. Retrieve immunization data  
+3. Group by patient  
+4. Count vaccines  
+5. Sort ascending  
+6. Select top result  
+7. Join with patient details  
 
 ---
 
-## Processing Microservices
+## 4. Dataset & Setup
 
-Agents often require specialized tools such as browsing, code execution, or search. These are implemented as microservices:
+The system uses the **Synthetic Patient Generation Dataset**, containing multiple healthcare tables.
 
-- Lambda triggers subscribe to the hub and filter messages.
-
-- Step Functions orchestrate pipelines (e.g., preprocessing, model invocation).
-
-- Lambda functions execute specific parsing or transformation logic.
-
-- Results or errors are returned to the hub for downstream services.
+Setup involves downloading, extracting, and placing data in the project folder.
 
 ---
 
-## Model Customization Microservice (Nova)
+## 5. Solution Architecture: Plan → Execute
 
-Fine-tuning is handled as a dedicated microservice:
+Two-phase workflow:
 
-- Supports both full fine-tuning and parameter-efficient techniques.
+- **Plan**: LLM generates a step-by-step plan  
+- **Execute**: Engine executes each step  
 
-- Methods include SFT, DPO, RLHF, CPT, and Knowledge Distillation.
+Flow:
 
-- Runs independently, so updates or retraining do not disrupt the overall runtime.
+User → LLM Plan → JSON Plan → Execution Engine → Answer
 
 ---
 
-## New Features in the Solution
+## 6. Planning Phase
 
-### 1. Amazon Bedrock AgentCore
+### Why Planning?
 
-- Serverless runtime for agents.
+The LLM:
 
-- Session isolation and observability.
+- Performs step-by-step reasoning  
+- Produces a structured workflow  
+- Avoids hallucinated API calls  
 
-- Integrates with open-source frameworks.
+Tools are provided as **function signatures** the LLM can use.
 
-### 2. Expanded Tooling Support
+### RAG for Tool Selection
 
-- Microservices for memory, identity, gateway, browser, and interpreter.
+RAG helps show the LLM only relevant tools, improving accuracy and reducing complexity.
 
-- Each is modular and replaceable.
+### Example Plan
 
-### 3. Customer Adoption
+For the query “Find the patient with the fewest vaccines,” the plan includes:
 
-- Enterprises like Itaú Unibanco, Innovaccer, Boomi, Box, and Epsilon are already adopting this architecture for scalable production deployment.
+- Retrieve patients  
+- Retrieve immunizations  
+- Group by patient  
+- Count  
+- Sort  
+- Limit  
+- Join  
+- Select  
 
+---
 
-```yaml
-Outputs:
-  AgentCoreTopic:
-    Value: !Ref AgentCoreTopic
-    Export:
-      Name: !Sub ${AWS::StackName}-AgentCoreTopic
+## 7. Execution Phase
 
-  AgentMemoryTable:
-    Value: !Ref AgentMemoryTable
-    Export:
-      Name: !Sub ${AWS::StackName}-AgentMemoryTable
+The engine takes the JSON plan and:
 
-  NovaCustomizationJob:
-    Value: !Ref NovaCustomizationJob
-    Export:
-      Name: !Sub ${AWS::StackName}-NovaCustomizationJob
+- Parses it  
+- Executes each function  
+- Stores intermediate results  
+- Returns the final answer  
 
+The LLM then frames the output into a natural-language response.
+
+---
+
+## 8. Error Handling
+
+Possible failures:
+
+- Empty or missing data  
+- Invalid parameters  
+- Type mismatches  
+
+Engine responsibilities:
+
+- Validate inputs  
+- Validate outputs  
+- Return meaningful errors  
+
+The LLM may regenerate a better plan automatically.
+
+---
+
+## 9. Summary
+
+We explored:
+
+- How LLMs use APIs to answer complex questions  
+- The Plan → Execute architecture  
+- The role of RAG and function signatures  
+- Error handling in execution  
+
+LLMs can now act as **orchestration brains** for analytical workflows.
+
+---
+
+## 10. Future Improvements
+
+Extensions include:
+
+- More analytical questions  
+- Additional tool signatures  
+- A web UI for question input, plan visualization, and execution logs  
+
+This makes the project both academically strong and practically relevant.

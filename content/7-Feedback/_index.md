@@ -12,33 +12,45 @@ pre: " <b> 7. </b> "
 ### Overall Evaluation
 
 **1. Working Environment**  
-The working environment is very friendly and open. FCJ members are always willing to help whenever I encounter difficulties, even outside working hours. The workspace is tidy and comfortable, helping me focus better. However, I think it would be nice to have more social gatherings or team bonding activities to strengthen relationships.
+The working environment at FCJ is comfortable and easy to adapt to. Everyone is supportive and willing to help whenever I run into difficulties, even outside learning hours. The workspace is organized and quiet, which helps me stay focused. It would be even better if we had more team bonding sessions to get to know each other more.
 
 **2. Support from Mentor / Team Admin**  
-The mentor provides very detailed guidance, explains clearly when I don’t understand, and always encourages me to ask questions. The admin team supports administrative tasks, provides necessary documents, and creates favorable conditions for me to work effectively. I especially appreciate that the mentor allows me to try and solve problems myself instead of just giving the answer.
+My mentor provides clear explanations and guides me step-by-step while still giving me space to try solving things on my own first. The admin team is very helpful with documents, logistics, and creating a smooth experience throughout the internship. I really appreciate that my mentor encourages me to ask questions instead of being afraid of making mistakes.
 
-**3. Relevance of Work to Academic Major**  
-The tasks I was assigned align well with the knowledge I learned at university, while also introducing me to new areas I had never encountered before. This allowed me to both strengthen my foundational knowledge and gain practical skills.
+**3. Relevance to My Major**  
+Most of the tasks match the subjects I studied at university, and I was also exposed to many new topics such as cloud operations and DevOps practices. This mixture helped me reinforce my foundation while gaining hands-on experience.
 
 **4. Learning & Skill Development Opportunities**  
-During the internship, I learned many new skills such as using project management tools, teamwork skills, and professional communication in a corporate environment. The mentor also shared valuable real-world experiences that helped me better plan my career path.
+During this internship, I learned how to use new technical tools, improved my teamwork ability, and practiced professional communication. My mentor also shared real-world insights that helped me understand more clearly how the cloud industry works and what skills I need moving forward.
 
-**5. Company Culture & Team Spirit**  
-The company culture is very positive: everyone respects each other, works seriously but still keeps things enjoyable. When there are urgent projects, everyone works together and supports one another regardless of their position. This made me feel like a real part of the team, even as an intern.
+**5. Team Culture & Collaboration**  
+The culture in FCJ is very positive. People respect each other and keep a friendly atmosphere even when the workload increases. I always felt included as part of the team, despite being an intern.
 
-**6. Internship Policies / Benefits**  
-The company provides an internship allowance and offers flexible working hours when needed. In addition, having the opportunity to join internal training sessions is a big plus.
+**6. Internship Policies & Benefits**  
+Although there is no internship allowance, the flexible scheduling and chances to join internal workshops are very valuable to me.
 
 ---
 
 ### Additional Questions
-- What did you find **most satisfying** during your internship?  
-- What do you think the company **should improve** for future interns?  
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
+
+**What did you find most satisfying during your internship?**  
+- Being guided closely by mentors and receiving clear feedback on how to improve.
+
+**What should the company improve for future interns?**  
+- At the moment, I don’t have any suggestions.
+
+**Would you recommend your friends to intern here? Why?**  
+- Yes. The FCJ program is extremely helpful and provides solid knowledge for future career development.
 
 ---
 
 ### Suggestions & Expectations
-- Do you have any suggestions to improve the internship experience?  
-- Would you like to continue this program in the future?  
-- Any other comments (free sharing):
+
+**Any suggestions to improve the internship experience?**  
+- I hope AWS will allow interns to visit the office more frequently.
+
+**Would you like to continue this program in the future?**  
+- Yes, because AWS is a great place to grow professionally and offers many opportunities in cloud-related career paths.
+
+**Any other comments?**  
+- Nothing additional, except my appreciation to my mentor and the FCJ team for all their support throughout the internship.

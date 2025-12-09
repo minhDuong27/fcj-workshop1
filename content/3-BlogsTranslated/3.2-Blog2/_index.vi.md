@@ -1,113 +1,126 @@
 ---
-title: "Blog 2"
-date: 2025-01-01
-weight: 1
+title: "Cập nhật phương pháp Carbon cho Công cụ Dấu Chân Carbon của Khách Hàng AWS (CCFT)"
+date: 2025-10-16
+weight: 2
 chapter: false
-pre: " <b> 3.2. </b> "
----
-# Kích hoạt hoạt động Đầu tiên về Quan sát ở quy mô lớn
-
-*by Rizwan Mushtaq, Kamilo "Kam" Amir, Sunil Ramachandra, and Aswin Vasudevan on 12 SEP 2025*
-
-Observability is no longer a “nice to have” — nó là điều kiện tiên quyết để đảm bảo hệ thống hoạt động an toàn, hiệu quả và có thể mở rộng. Với lượng log, metric và sự kiện bảo mật ngày càng lớn, việc thu thập, xử lý và trực quan hóa dữ liệu một cách có tổ chức trở thành một thách thức đối với nhiều tổ chức. AWS hợp tác với Cribl Search mang lại một pipeline observability tập trung, linh hoạt và có thể tùy chỉnh — biến dữ liệu thô thành thông tin có thể hành động để đưa ra quyết định nhanh hơn, tự tin hơn và ở quy mô lớn.
-
+pre: "<b> 3.2. </b>"
 ---
 
-## Hướng dẫn kiến trúc
+# Cập nhật Phương pháp Carbon cho Công cụ Dấu chân Carbon của Khách hàng AWS  
+*(Theo tài liệu gốc AWS, cập nhật ngày 23/04/2025)*
 
-Dưới đây là các thành phần chính và cách hoạt động của tích hợp giữa **Cribl Search** và **Amazon Managed Grafana**:
+Để hỗ trợ hành trình bền vững của khách hàng, AWS đã ra mắt Công cụ Dấu chân Carbon của Khách hàng (Customer Carbon Footprint Tool – CCFT) vào năm 2022. CCFT giúp khách hàng theo dõi, đo lường và xem xét lượng khí thải carbon phát sinh từ việc sử dụng AWS, bao gồm khí thải Scope 1 và Scope 2 theo chuẩn Greenhouse Gas Protocol. Các số liệu được tính cho toàn bộ dải dịch vụ AWS như Amazon EC2, Amazon S3, AWS Lambda và nhiều dịch vụ khác.
 
-| thành phần           | vai trò chính                                                                                                                                                                                                           |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Cribl Search           | Cho phép tìm kiếm “in-place” trên nhiều nguồn dữ liệu (ví dụ: Cribl Lake, Amazon Security Lake, các dịch vụ AWS native).<br />Không cần phải index toàn bộ dữ liệu trước khi tìm kiếm.         |
-| Amazon Managed Grafana | Công cụ trực quan hóa mạnh mẽ: làm dashboards, real-time monitoring, drill-down metrics/logs để phân tích sự cố. <br />Được tích hợp plugin cho Cribl Search để lấy dữ liệu trực tiếp từ Cribl. |
+Hôm nay, AWS công bố ba cập nhật mới cho CCFT:
+
+1. Dễ dàng truy cập dữ liệu hơn thông qua dịch vụ Billing and Cost Management Data Exports.  
+2. Thông tin carbon chi tiết hơn theo từng vùng AWS (Regional Granularity).  
+3. Phương pháp phân bổ mới (Methodology v2.0), có xác minh độc lập từ APEX.
+
+Từ tháng 1 năm 2025 trở về sau, CCFT sẽ sử dụng phương pháp v2.0. Dữ liệu trước tháng 12/2024 vẫn dùng phương pháp v1.0.
 
 ---
 
-## Use-Cases nổi bật
+# 1. Làm cho việc truy cập dữ liệu dễ hơn
 
+Khách hàng hiện có thể xuất dữ liệu carbon từ CCFT thông qua AWS Data Exports trong Billing and Cost Management. 
 
-Một số kịch bản mà giải pháp này rất hữu dụng:
+Dữ liệu xuất ra:
 
-1. **Monitoring cơ sở hạ tầng đám mây**
+- Bao gồm ước tính khí thải carbon cho tất cả tài khoản trong AWS Organizations.  
+- Được gửi tự động mỗi tháng dưới dạng CSV hoặc Parquet vào Amazon S3.  
+- Bao gồm tối đa 38 tháng dữ liệu lịch sử trong lần xuất đầu tiên.  
 
-   Bạn có thể truy vấn dữ liệu từ các dịch vụ AWS qua API, hoặc dữ liệu tại rest, rồi dùng Cribl để lọc sự kiện cần thiết, sau đó gửi tới hệ thống SIEM hoặc ngay vào dashboards Grafana để theo dõi health, hiệu suất tài nguyên, chi phí
-2. **Quản lý hiệu năng ứng dụng (APM)**
-
-   Dashboards thể hiện latency, error rate, user experience, với khả năng drill-down vào các transaction cụ thể. Grafana giúp hiển thị rõ ràng và nhanh chóng những vấn đề ứng dụng cần được xử lý. 
-3. **Vận hành & bảo mật (SecOps)**
-
-   Việc hiển thị sự kiện bảo mật trong dashboard chuyên dụng; Cribl hỗ trợ continuous monitoring, compliance reporting, threat detection, investigation workflows. Giúp đội SOC đáp ứng nhanh khi có sự cố.
-
-## Cách thi hành (Walkthrough)
-
-
-Để thiết lập và vận hành giải pháp, các bước cơ bản như sau:
-
-1. **Chuẩn bị**
-   * Có tài khoản AWS với quyền quản trị.
-   * Có bucket S3 (ví dụ để lưu VPC Flow Logs), cấu hình phù hợp để các dịch vụ có thể write vào.
-   * Tài khoản Cribl Cloud và IAM/credential cần thiết.
-2. **Cấu hình xác thực (API Auth)**
-   * Tạo token / API credentials trong Cribl để Grafana có thể kết nối an toàn. [ices, Inc.](https://aws.amazon.com/blogs/apn/enhance-data-visibility-with-cribl-search-and-amazon-managed-grafana/?utm_source=chatgpt.com)
-3. **Cài đặt plugin Cribl Search trong Grafana**
-   * Vào phần Plugins trong Amazon Managed Grafana, tìm plugin “Cribl Search”, thêm kết nối bằng credentials từ Cribl. [Amazon Web Services, Inc.](https://aws.amazon.com/blogs/apn/enhance-data-visibility-with-cribl-search-and-amazon-managed-grafana/?utm_source=chatgpt.com)
-4. **Tạo dashboard & visualization**
-   * Ví dụ: xem VPC Flow Logs trong 15 phút gần nhất, nhóm theo trạng thái log mỗi phút. [Amazon Web Services, Inc.](https://aws.amazon.com/blogs/apn/enhance-data-visibility-with-cribl-search-and-amazon-managed-grafana/?utm_source=chatgpt.com)
-   * Chuyển sang chế độ xem bảng (table view) để phân tích log cụ thể, tìm anomaly, trace đường đi của request. [Amazon Web Services, Inc.](https://aws.amazon.com/blogs/apn/enhance-data-visibility-with-cribl-search-and-amazon-managed-grafana/?utm_source=chatgpt.com)
-5. **Vệ sinh & chi phí**
-   * Xóa các resource không dùng: bucket S3, cấu hình Flow Logs, cấu hình tạm thời ở Cribl để hạn chế chi phí dư thừa.
+Các tháng trước 12/2024 dùng v1.0, từ 1/2025 trở đi dùng v2.0.
 
 ---
 
-## Front door microservice
+# 2. Chi tiết theo vùng AWS (Regional Granularity)
 
-- Cung cấp API Gateway để tương tác REST bên ngoài
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+Khách hàng giờ có thể xem lượng khí thải carbon chia nhỏ theo từng **AWS Region**.  
+Riêng Amazon CloudFront được hiển thị dưới một mục **Global Services**.
 
----
+Điều này giúp khách hàng:
 
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute
-- Step Functions Express Workflow để chuyển ER7 → JSON
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+- Xác định vùng nào tiêu tốn nhiều carbon nhất.  
+- Cân nhắc tái phân bổ workloads sang các vùng tối ưu hơn.  
 
 ---
 
-## Tính năng mới trong giải pháp
+# 3. Phương pháp phân bổ (Methodology) v2.0
 
-### 1. AWS CloudFormation cross-stack references
+Khách hàng thường sử dụng nhiều dịch vụ trải dài nhiều vùng AWS, khiến việc phân bổ khí thải trở nên phức tạp.
 
-Ví dụ *outputs* trong core microservice:
+Phương pháp mới v2.0 tuân theo nhiều tiêu chuẩn quốc tế gồm:
 
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
-```
+- GHG Protocol Corporate Standard  
+- GHG Protocol Product Standard  
+- ISO 14040/44 (Life Cycle Assessment)  
+- ISO 14067 (Carbon footprint of products)  
+- ICT Sector Guidance  
+
+Một số điểm chính:
+
+---
+
+## Phân bổ Scope 1 (Trực tiếp)
+
+Scope 1 bao gồm khí thải trực tiếp từ các nguồn AWS sở hữu hoặc kiểm soát, ví dụ:
+
+- Máy phát dự phòng tại data centers  
+- Nhiên liệu sử dụng phục vụ vận hành  
+
+AWS thu thập dữ liệu Scope 1 hàng năm, cấp site, rồi tổng hợp lên cấp cluster (vùng AWS hoặc CloudFront edge cluster).
+
+---
+
+## Phân bổ Scope 2 (Gián tiếp)
+
+Scope 2 bao gồm khí thải gián tiếp từ điện mua từ lưới.
+
+CCFT sử dụng phương pháp:
+
+- **Market-based**  
+- Hệ số phát thải dựa trên vị trí địa lý  
+- Theo thứ tự ưu tiên của GHG Protocol  
+
+Nguồn dữ liệu về năng lượng tái tạo, grid mix và hệ số phát thải được xác minh hàng năm.
+
+---
+
+## Tổng quan phân bổ v2.0
+
+Quy trình phân bổ gồm 3 bước:
+
+1. Phân bổ khí thải cấp cluster cho từng giá đỡ máy chủ (server rack).  
+2. Ánh xạ khí thải từ các giá đỡ đến từng dịch vụ AWS dựa vào mức sử dụng tài nguyên.  
+3. Phân bổ khí thải từ dịch vụ AWS đến từng tài khoản khách hàng.
+
+Một số khách hàng có thể thấy số liệu thay đổi vì v2.0 phản ánh chính xác hơn việc sử dụng thực tế.
+
+---
+
+## Ba cập nhật chính trong phương pháp v2.0
+
+1. **Phân bổ phần công suất chưa dùng (unused capacity) cho tất cả khách hàng.**  
+   AWS luôn phải xây dựng dư công suất, và phần carbon liên quan đến công suất này giờ sẽ được phân bổ đều theo quy định của GHG Protocol & ISO.
+
+2. **Cải thiện logic phân bổ cho dịch vụ không có phần cứng riêng** (như AWS Lambda, Amazon Redshift).  
+   Phân bổ rõ ràng giữa khách hàng AWS và đội ngũ nội bộ Amazon.
+
+3. **Cập nhật phân bổ chi phí chung (overhead)** như:  
+   - Giá đỡ mạng  
+   - Chi phí mở rộng AWS Regions mới  
+
+---
+
+# Tương lai
+
+AWS sẽ tiếp tục cải thiện CCFT dựa trên dữ liệu mới, khoa học khí hậu và nhu cầu khách hàng.
+
+---
+
+# Cam kết The Climate Pledge
+
+AWS tiếp tục cam kết hướng tới **net-zero carbon vào năm 2040**.  
+Để tìm hiểu thêm, khách hàng có thể truy cập trang bền vững của AWS.
