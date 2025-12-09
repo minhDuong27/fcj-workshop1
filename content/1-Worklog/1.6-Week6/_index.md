@@ -6,25 +6,28 @@ chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
-
-
 ### Week 6 Objectives:
 
-* Start Module 03 – Compute.
-* Learn EC2 basics: AMI, Instance Type, EBS.
-* Do backup & Storage Gateway labs.
+* Learn IAM advanced concepts: Role, Policy, Access Control.
+* Practice IAM Role creation for EC2 and Lambda.
+* Explore AWS Security Hub and GuardDuty.
+
+---
 
 ### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Watch EC2 introduction</li></ul> | 13/10/2025 | 13/10/2025 | Module 03 |
-| 3 | <ul><li>Lean about AMI, Instance Types, EBS volumes</li></ul> | 14/10/2025 | 14/10/2025 | 03-01-01 → 03-01-03 |
-| 4 | <ul><li>Practice User Data + Metadata</li></ul> | 15/10/2025 | 15/10/2025 | 03-01-05 → 03-01-06 |
-| 5 | <ul><li>Backup labs: Lab13-01 → Lab13-06</li></ul> | 16/10/2025 | 16/10/2025 | Lab13 |
-| 6 | <ul><li>Storage Gateway + S3 labs: Lab24 + Lab57</li></ul> | 17/10/2025 | 17/10/2025 | Lab24, Lab57 |
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Module 05-01 → 05-03: IAM, Cognito</li></ul> | 13/10 | 13/10 | Module 05 |
+| 3 | <ul><li>Create IAM Roles (EC2/Lambda)</li><li>Inline vs Managed Policy</li></ul> | 14/10 | 14/10 | IAM Docs |
+| 4 | <ul><li>Practice Switch Role</li><li>Use IAM Policy Simulator</li></ul> | 15/10 | 15/10 | IAM Tools |
+| 5 | <ul><li>Enable Security Hub</li><li>Enable GuardDuty</li></ul> | 16/10 | 16/10 | AWS Security |
+| 6 | <ul><li>Review all Security fundamentals</li></ul> | 17/10 | 17/10 | Notes |
+
+---
 
 ### Week 6 Achievements:
 
-* Launched EC2, created AMI and snapshots.
-* Completed backup & restore labs.
-* Understood how EBS, metadata, and User Data work.
+* Understood IAM deep concepts.
+* Created and tested IAM Roles correctly.
+* Enabled and analyzed GuardDuty & Security Hub findings.

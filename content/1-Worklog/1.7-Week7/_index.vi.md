@@ -1,30 +1,35 @@
 ---
-title: "Worklog Tuần 7"
+title: "Week 7 Worklog"
 date: 2025-10-20
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
 
-
 ### Week 7 Objectives:
 
-* Tìm hiểu sâu về S3.
-* Học về static website hosting.
-* Làm các lab về CloudFront, versioning, replication.
+* Tìm hiểu cơ bản về database trên AWS.
+* Làm quen Amazon RDS, Aurora, DynamoDB.
+* Hiểu backup, restore và security cho database.
+* Thực hành Module 06.
+
+---
 
 ### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Xem phần S3 Access</li></ul> | 20/10/2025 | 20/10/2025 | Module 04 |
-| 3 | <ul><li>Static Website + CORS</li></ul> | 21/10/2025 | 21/10/2025 | Module 04 |
-| 4 | <ul><li>Lab57-02 → 07.3 (S3 + CloudFront)</li></ul> | 22/10/2025 | 22/10/2025 | Lab57 |
-| 5 | <ul><li>Versioning, Move Object, Replication</li></ul> | 23/10/2025 | 23/10/2025 | Lab57-08 → 11 |
-| 6 | <ul><li>Làm các lab còn lại của Module 04</li></ul> | 24/10/2025 | 24/10/2025 | Lab13, Lab14, Lab24, Lab25 |
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Xem Module 06-01 → 06-02</li><li>Hiểu RDS & Aurora</li></ul> | 20/10 | 20/10 | Module 06 |
+| 3 | <ul><li>Tạo RDS Subnet Group</li><li>Tạo Security Group cho DB</li></ul> | 21/10 | 21/10 | RDS Lab |
+| 4 | <ul><li>Tạo RDS Instance</li><li>Kết nối thử bằng EC2</li></ul> | 22/10 | 22/10 | Lab 05 |
+| 5 | <ul><li>Làm backup & restore DB</li><li>Tìm hiểu snapshot</li></ul> | 23/10 | 23/10 | RDS Docs |
+| 6 | <ul><li>Tìm hiểu DynamoDB & ElastiCache</li></ul> | 24/10 | 24/10 | NoSQL Docs |
+
+---
 
 ### Week 7 Achievements:
 
-* Biết dùng S3 để host website.
-* Hiểu cách CloudFront tăng tốc độ truy cập.
-* Làm xong tất cả lab S3 trong Module 04.
-
+* Hiểu khác biệt SQL vs NoSQL trên AWS.
+* Tạo được RDS Database & kết nối bằng EC2.
+* Biết cấu hình backup, snapshot và restore DB.
+* Làm quen DynamoDB và ElastiCache.

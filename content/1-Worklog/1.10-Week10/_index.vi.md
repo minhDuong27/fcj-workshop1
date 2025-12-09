@@ -1,29 +1,33 @@
 ---
-title: "Worklog Tuần 10"
+title: "Week 10 Worklog"
 date: 2025-11-10
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
 
-
 ### Week 10 Objectives:
 
-* Tìm hiểu dịch vụ phân tích dữ liệu.
-* Học Glue, Kinesis, Athena, QuickSight.
-* Làm các lab 35, 39, 40.
+* Xây dựng Pipeline hoàn chỉnh.
+* Tích hợp CodeGuru Reviewer để quét bảo mật.
+* Tạo buildspec.yml và appspec.yml.
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Glue Crawler + Data Catalog</li></ul> | 10/11/2025 | 10/11/2025 | Lab35 |
-| 3 | <ul><li>Kinesis + Data Stream</li></ul> | 11/11/2025 | 11/11/2025 | Lab35 |
-| 4 | <ul><li>Athena query</li></ul> | 12/11/2025 | 12/11/2025 | Lab35 |
-| 5 | <ul><li>DynamoDB labs: Lab39</li></ul> | 13/11/2025 | 13/11/2025 | Lab39 |
-| 6 | <ul><li>Cost allocation + tags (Lab40)</li></ul> | 14/11/2025 | 14/11/2025 | Lab40 |
+---
+
+### Tasks this week:
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Tạo CodePipeline các stage: Source → Build → Scan → Deploy</li></ul> | 10/11 | 10/11 | AWS CodePipeline |
+| 3 | <ul><li>Cấu hình CodeBuild + buildspec.yml</li></ul> | 11/11 | 11/11 | CodeBuild Docs |
+| 4 | <ul><li>Tích hợp CodeGuru Reviewer</li></ul> | 12/11 | 12/11 | CodeGuru Docs |
+| 5 | <ul><li>Tạo appspec.yml</li></ul> | 13/11 | 13/11 | CodeDeploy Docs |
+| 6 | <ul><li>Chạy thử Pipeline — sửa lỗi IAM</li></ul> | 14/11 | 14/11 | Troubleshooting Notes |
+
+---
 
 ### Week 10 Achievements:
 
-* Làm quen với pipeline dữ liệu cơ bản.
-* Biết chạy Glue, query Athena, xem báo cáo QuickSight.
-* Biết cách quản lý cost theo tag.
+* Pipeline chạy được 3 stage đầu (Source/Build/Scan).
+* CodeGuru Reviewer đã tự động quét mã và phát hiện vấn đề.
+* Cấu hình CodeDeploy đã sẵn sàng.

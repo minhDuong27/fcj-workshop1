@@ -6,24 +6,28 @@ chapter: false
 pre: " <b> 1.9. </b> "
 ---
 
-
 ### Week 9 Objectives:
 
-* Learn RDS, Aurora, DynamoDB, ElastiCache.
-* Practice building databases on AWS.
-* Do Migration Service labs.
+* Finalize the design of the Security Scan Pipeline.
+* Build the foundational AWS infrastructure.
+* Connect GitHub to AWS CodePipeline.
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Database concepts</li></ul> | 03/11/2025 | 03/11/2025 | Module 06 |
-| 3 | <ul><li>RDS + Aurora theory</li></ul> | 04/11/2025 | 04/11/2025 | Module 06 |
-| 4 | <ul><li>Lab05 VPC & SG setup</li></ul> | 05/11/2025 | 05/11/2025 | Lab05 |
-| 5 | <ul><li>Create RDS + connect EC2</li></ul> | 06/11/2025 | 06/11/2025 | Lab05 |
-| 6 | <ul><li>Migration labs: Lab43</li></ul> | 07/11/2025 | 07/11/2025 | Lab43 |
+---
+
+### Tasks this week:
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Finalize pipeline architecture diagram</li></ul> | 03/11 | 03/11 | Project Docs |
+| 3 | <ul><li>Create required IAM Roles</li><li>CodeBuildRole, CodeDeployRole</li></ul> | 04/11 | 04/11 | IAM Docs |
+| 4 | <ul><li>Create S3 Bucket for artifacts</li><li>Enable encryption</li></ul> | 05/11 | 05/11 | S3 Docs |
+| 5 | <ul><li>Launch EC2 instance for deployment</li><li>Configure security groups</li></ul> | 06/11 | 06/11 | EC2 Docs |
+| 6 | <ul><li>Connect GitHub → CodePipeline</li><li>Test Source stage</li></ul> | 07/11 | 07/11 | GitHub Docs |
+
+---
 
 ### Week 9 Achievements:
 
-* Created RDS and connected it to EC2.
-* Understood DB subnet groups, SGs, and backup/restore.
-* Completed migration labs from MSSQL/Oracle to Aurora.
+* Pipeline architecture finalized.
+* Core infrastructure (IAM, S3, EC2) successfully deployed.
+* GitHub integrated with CodePipeline without issues.

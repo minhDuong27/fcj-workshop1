@@ -1,30 +1,29 @@
 ---
-title: "Worklog Tuần 6"
+title: "Week 6 Worklog"
 date: 2025-10-13
 weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
-
-
 ### Week 6 Objectives:
 
-* Bắt đầu Module 03 – Compute.
-* Hiểu cách EC2 hoạt động.
-* Học về AMI, Instance Type, EBS, Metadata, User Data.
+* Hiểu IAM nâng cao: Role, Policy, Resource Access.
+* Thực hành tạo IAM Role cho Lambda, EC2.
+* Tìm hiểu Security Hub & GuardDuty.
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Xem EC2 overview + cơ chế hoạt động</li></ul> | 13/10/2025 | 13/10/2025 | Module 03 |
-| 3 | <ul><li>Học về AMI, Instance Type, EBS</li></ul> | 14/10/2025 | 14/10/2025 | 03-01-01 → 03-01-03 |
-| 4 | <ul><li>User Data + Metadata</li></ul> | 15/10/2025 | 15/10/2025 | 03-01-05 → 03-01-06 |
-| 5 | <ul><li>Lab EC2 Backup: Lab13-01 → Lab13-06</li></ul> | 16/10/2025 | 16/10/2025 | Lab13.x |
-| 6 | <ul><li>Lab Storage Gateway + S3: Lab24 + Lab57 phần đầu</li></ul> | 17/10/2025 | 17/10/2025 | Lab24, Lab57 |
+### Tasks this week:
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Module 05-01 → 05-03: IAM, Cognito</li></ul> | 13/10 | 13/10 | Module 05 |
+| 3 | <ul><li>Tạo IAM Role cho EC2 + Lambda</li><li>Inline Policy vs Managed Policy</li></ul> | 14/10 | 14/10 | IAM Docs |
+| 4 | <ul><li>Thử Switch Role</li><li>Kiểm tra Policy bằng IAM Policy Simulator</li></ul> | 15/10 | 15/10 | IAM Tools |
+| 5 | <ul><li>Bật Security Hub</li><li>Bật GuardDuty</li></ul> | 16/10 | 16/10 | AWS Security |
+| 6 | <ul><li>Tổng hợp kiến thức Security cơ bản</li></ul> | 17/10 | 17/10 | Notes |
 
 ### Week 6 Achievements:
 
-* Hiểu cơ bản cách 1 VM chạy trên AWS.
-* Thử nghiệm launch EC2, tạo AMI và snapshot.
-* Làm xong backup lab và Storage Gateway cơ bản.    
+* Thành thạo IAM nâng cao.
+* Hiểu security baseline của AWS.
+* Biết bật và đọc kết quả Security Hub + GuardDuty.

@@ -8,21 +8,26 @@ pre: " <b> 1.11. </b> "
 
 ### Week 11 Objectives:
 
-* Learn CloudShell, SDK usage, and Cloud9.
-* Practice ETL with Glue & DataBrew.
-* Work on end-to-end data pipeline (Lab72).
+* Complete the Deploy stage.
+* Perform full pipeline testing.
+* Fix issues and improve workflow stability.
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>CloudShell basics + SDK</li></ul> | 17/11/2025 | 17/11/2025 | Lab60 |
-| 3 | <ul><li>Set up Cloud9 environment</li></ul> | 18/11/2025 | 18/11/2025 | Lab70 |
-| 4 | <ul><li>Clean data with DataBrew</li></ul> | 19/11/2025 | 19/11/2025 | Lab70 |
-| 5 | <ul><li>Start the big Lab72 pipeline</li></ul> | 20/11/2025 | 20/11/2025 | Lab72 |
-| 6 | <ul><li>Glue, EMR, Athena, Kinesis workflows</li></ul> | 21/11/2025 | 21/11/2025 | Lab72 |
+---
+
+### Tasks this week:
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Configure CodeDeploy Application & Deployment Group</li></ul> | 17/11 | 17/11 | CodeDeploy Docs |
+| 3 | <ul><li>Review AppSpec lifecycle hooks</li></ul> | 18/11 | 18/11 | AppSpec Docs |
+| 4 | <ul><li>First end-to-end pipeline test → EC2 permission error</li></ul> | 19/11 | 19/11 | Test Logs |
+| 5 | <ul><li>Fix IAM Role & adjust appspec.yml</li></ul> | 20/11 | 20/11 | Troubleshooting |
+| 6 | <ul><li>Enable CloudWatch, GuardDuty, Security Hub</li></ul> | 21/11 | 21/11 | AWS Security Docs |
+
+---
 
 ### Week 11 Achievements:
 
-* Used CloudShell and Cloud9 for development.
-* Practiced data cleaning with DataBrew.
-* Built a multi-step pipeline using Glue, EMR, and Athena.
+* Successfully deployed application to EC2 via CodeDeploy.
+* Full pipeline now running smoothly end-to-end.
+* Security monitoring tools activated and functioning.

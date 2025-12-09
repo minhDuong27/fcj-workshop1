@@ -6,25 +6,30 @@ chapter: false
 pre: " <b> 1.7. </b> "
 ---
 
-
-
 ### Week 7 Objectives:
 
-* Learn everything about S3.
-* Build a static website on S3.
-* Practice CloudFront, versioning, replication.
+* Learn the basics of database services on AWS.
+* Get familiar with Amazon RDS, Aurora, DynamoDB.
+* Understand backup, restore, and database security.
+* Complete Module 06 labs.
+
+---
 
 ### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Study S3 access control</li></ul> | 20/10/2025 | 20/10/2025 | Module 04 |
-| 3 | <ul><li>Learn static hosting + CORS</li></ul> | 21/10/2025 | 21/10/2025 | Module 04 |
-| 4 | <ul><li>Lab57-02 → 07.3: S3 + CloudFront</li></ul> | 22/10/2025 | 22/10/2025 | Lab57 |
-| 5 | <ul><li>Versioning + Replication labs</li></ul> | 23/10/2025 | 23/10/2025 | Lab57-08 → 11 |
-| 6 | <ul><li>Finish Module 04 labs</li></ul> | 24/10/2025 | 24/10/2025 | Module 04 Labs |
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Watch Module 06-01 → 06-02</li><li>Learn RDS & Aurora basics</li></ul> | 20/10 | 20/10 | Module 06 |
+| 3 | <ul><li>Create RDS Subnet Group</li><li>Create DB Security Group</li></ul> | 21/10 | 21/10 | RDS Lab |
+| 4 | <ul><li>Launch RDS instance</li><li>Test connection from EC2</li></ul> | 22/10 | 22/10 | Lab 05 |
+| 5 | <ul><li>Perform DB backup & restore</li><li>Review snapshot usage</li></ul> | 23/10 | 23/10 | RDS Docs |
+| 6 | <ul><li>Study DynamoDB & ElastiCache</li></ul> | 24/10 | 24/10 | NoSQL Docs |
+
+---
 
 ### Week 7 Achievements:
 
-* Successfully hosted a website on S3.
-* Configured CloudFront distribution.
-* Learned versioning, object movement, and multi-region replication.
+* Understood SQL vs NoSQL differences on AWS.
+* Successfully created and connected to an RDS database.
+* Learned how to configure DB backup, snapshot, and restore.
+* Gained basic understanding of DynamoDB and ElastiCache.

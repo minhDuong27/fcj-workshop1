@@ -8,22 +8,27 @@ pre: " <b> 1.4. </b> "
 
 ### Week 4 Objectives:
 
-* Continue Module 02 labs.
-* Launch EC2 instances inside VPC subnets.
-* Practice Hybrid DNS with Route 53 Resolver.
+* Learn EC2 concepts: Instances, AMI, EBS, Metadata.
+* Practice launching EC2 and attaching EBS.
+* Understand Autoscaling and Load Balancing.
+* Perform EC2 backup using AWS Backup.
+
+---
 
 ### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Lab03-03.x: Build full VPC setup</li></ul> | 29/09/2025 | 29/09/2025 | Lab03-03 |
-| 3 | <ul><li>Lab03-04.x: Launch EC2, test internal/external traffic</li></ul> | 30/09/2025 | 30/09/2025 | Lab03-04 |
-| 4 | <ul><li>Learn about hybrid DNS and Route53 Resolver</li></ul> | 01/10/2025 | 01/10/2025 | Module 02 |
-| 5 | <ul><li>Lab10-01 → Lab10-03: RDGW + DNS setup</li></ul> | 02/10/2025 | 02/10/2025 | Lab10 |
-| 6 | <ul><li>Lab10-05.x: Outbound/Inbound resolver</li><li>DNS testing + cleanup</li></ul> | 03/10/2025 | 03/10/2025 | Lab10 |
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Watch Module 03-01</li><li>EC2 types, pricing, AMI</li></ul> | 29/09 | 29/09 | Module 03 |
+| 3 | <ul><li>Create EC2 + EBS</li><li>Use User Data, Metadata</li></ul> | 30/09 | 30/09 | EC2 Docs |
+| 4 | <ul><li>Create Load Balancer</li><li>Set up Autoscaling Group</li></ul> | 01/10 | 01/10 | EC2 Labs |
+| 5 | <ul><li>Perform AWS Backup (Lab13)</li><li>Create backup plan</li></ul> | 02/10 | 02/10 | AWS Backup |
+| 6 | <ul><li>Restore EC2 from backup</li></ul> | 03/10 | 03/10 | Backup Lab |
+
+---
 
 ### Week 4 Achievements:
 
-* Built a full VPC networking environment.
-* Launched EC2 in both public and private subnets.
-* Worked with Route53 Resolver for hybrid DNS.
-* Completed all remaining Module 02 basics.
+* Learned full EC2 workflow.
+* Implemented Load Balancer + Auto Scaling.
+* Successfully backed up and restored an EC2 instance.

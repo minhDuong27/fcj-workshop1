@@ -1,30 +1,33 @@
 ---
-title: "Worklog Tuần 9"
+title: "Week 9 Worklog"
 date: 2025-11-03
 weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
 
-
 ### Week 9 Objectives:
 
-* Học về RDS, Aurora, DynamoDB và ElastiCache.
-* Làm lab tạo database.
-* Làm phần Migration Service.
+* Hoàn thiện kiến trúc Security Scan Pipeline.
+* Tạo hạ tầng cơ bản trên AWS: IAM Roles, S3, EC2.
+* Kết nối GitHub với CodePipeline.
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Xem phần Database Concepts</li></ul> | 03/11/2025 | 03/11/2025 | Module 06 |
-| 3 | <ul><li>Học RDS + Aurora</li></ul> | 04/11/2025 | 04/11/2025 | Module 06 |
-| 4 | <ul><li>Lab05: Tạo VPC, EC2 SG, RDS SG, DB Subnet Group</li></ul> | 05/11/2025 | 05/11/2025 | Lab05 |
-| 5 | <ul><li>Tạo RDS instance + kết nối ứng dụng</li></ul> | 06/11/2025 | 06/11/2025 | Lab05 |
-| 6 | <ul><li>Làm chuỗi Migration Lab43</li></ul> | 07/11/2025 | 07/11/2025 | Lab43 |
+---
+
+### Tasks this week:
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Hoàn chỉnh bản kiến trúc Pipeline</li></ul> | 03/11 | 03/11 | Project Docs |
+| 3 | <ul><li>Tạo IAM Roles cho Pipeline</li><li>CodeBuildRole, CodeDeployRole</li></ul> | 04/11 | 04/11 | IAM Docs |
+| 4 | <ul><li>Tạo S3 Artifact Bucket</li><li>Bật Encryption</li></ul> | 05/11 | 05/11 | S3 Docs |
+| 5 | <ul><li>Khởi tạo EC2 để deploy</li><li>Cấu hình Security Group</li></ul> | 06/11 | 06/11 | EC2 Docs |
+| 6 | <ul><li>Kết nối GitHub → CodePipeline</li><li>Commit thử để test Source stage</li></ul> | 07/11 | 07/11 | GitHub |
+
+---
 
 ### Week 9 Achievements:
 
-* Tự set up RDS và kết nối EC2.
-* Hiểu cơ chế backup/restore database.
-* Làm được migration từ MSSQL/Oracle về Aurora.
-
+* Kiến trúc Pipeline hoàn thiện và rõ ràng.
+* Hạ tầng core (IAM/S3/EC2) đã thiết lập đầy đủ.
+* GitHub kết nối thành công với CodePipeline.

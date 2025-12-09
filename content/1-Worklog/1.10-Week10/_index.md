@@ -8,21 +8,27 @@ pre: " <b> 1.10. </b> "
 
 ### Week 10 Objectives:
 
-* Work with AWS analytics services.
-* Practice Glue, Athena, Kinesis, and QuickSight.
-* Complete labs 35, 39, and 40.
+* Build the CI/CD pipeline structure.
+* Integrate CodeGuru Reviewer for automated security scanning.
+* Create buildspec.yml and appspec.yml.
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Glue Crawler & Data Catalog</li></ul> | 10/11/2025 | 10/11/2025 | Lab35 |
-| 3 | <ul><li>Kinesis Data Streams</li></ul> | 11/11/2025 | 11/11/2025 | Lab35 |
-| 4 | <ul><li>Athena queries</li></ul> | 12/11/2025 | 12/11/2025 | Lab35 |
-| 5 | <ul><li>DynamoDB labs</li></ul> | 13/11/2025 | 13/11/2025 | Lab39 |
-| 6 | <ul><li>Cost allocation & tagging</li></ul> | 14/11/2025 | 14/11/2025 | Lab40 |
+---
+
+### Tasks this week:
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Create CodePipeline: Source → Build → Scan → Deploy</li></ul> | 10/11 | 10/11 | CodePipeline Docs |
+| 3 | <ul><li>Configure CodeBuild</li><li>Write buildspec.yml</li></ul> | 11/11 | 11/11 | CodeBuild Docs |
+| 4 | <ul><li>Integrate CodeGuru Reviewer</li></ul> | 12/11 | 12/11 | CodeGuru Docs |
+| 5 | <ul><li>Create appspec.yml for deployment</li></ul> | 13/11 | 13/11 | CodeDeploy Docs |
+| 6 | <ul><li>Run pipeline test — fix IAM permission errors</li></ul> | 14/11 | 14/11 | Troubleshooting Notes |
+
+---
 
 ### Week 10 Achievements:
 
-* Built a basic data pipeline.
-* Learned how Glue, Athena, and QuickSight fit together.
-* Used tags for AWS cost tracking.
+* Pipeline functional through Source, Build, and Scan stages.
+* CodeGuru successfully scanning code for security issues.
+* Deployment configuration ready for Week 11.
+    

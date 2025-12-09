@@ -1,31 +1,34 @@
 ---
-title: "Worklog Tuần 8"
+title: "Week 8 Worklog"
 date: 2025-10-27
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
 
-
-
 ### Week 8 Objectives:
 
-* Hiểu mô hình bảo mật của AWS.
-* Học IAM: user, role, policy.
-* Dùng AWS Organizations, Identity Center, KMS.
+* Bắt đầu triển khai dự án “Security Scan Pipeline on AWS Cloud”.
+* Hiểu yêu cầu dự án và chia vai trò trong nhóm.
+* Phân tích kiến trúc DevSecOps Pipeline.
+* Chuẩn bị repo GitHub và tài liệu nền tảng.
+
+---
 
 ### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | ---- | ---------- | --------------- | ------------------ |
-| 2 | <ul><li>Xem Security Overview</li><li>Học về IAM core</li></ul> | 27/10/2025 | 27/10/2025 | Module 05 |
-| 3 | <ul><li>IAM Role, STS, Policy</li></ul> | 28/10/2025 | 28/10/2025 | IAM module |
-| 4 | <ul><li>Organizations + Identity Center</li></ul> | 29/10/2025 | 29/10/2025 | Org module |
-| 5 | <ul><li>KMS overview + thực hành tạo key</li></ul> | 30/10/2025 | 30/10/2025 | KMS module |
-| 6 | <ul><li>Security Hub + các lab 18, 22, 27, 28, 30, 33</li></ul> | 31/10/2025 | 31/10/2025 | Lab18,22,27,28,30,33 |
+
+| Day | Task | Start | End | Reference |
+|-----|------|-------|------|-----------|
+| 2 | <ul><li>Họp nhóm phân chia vai trò</li><li>Đọc và phân tích proposal</li></ul> | 27/10 | 27/10 | Project Docs |
+| 3 | <ul><li>Nghiên cứu kiến trúc DevSecOps Pipeline</li><li>CodePipeline, CodeBuild, CodeDeploy</li></ul> | 28/10 | 28/10 | AWS DevOps Docs |
+| 4 | <ul><li>Tạo sơ đồ kiến trúc pipeline ban đầu</li></ul> | 29/10 | 29/10 | Draw.io |
+| 5 | <ul><li>Tạo GitHub repo nhóm</li><li>Phân quyền thành viên</li></ul> | 30/10 | 30/10 | GitHub |
+| 6 | <ul><li>Ôn buildspec.yml & appspec.yml</li><li>Chuẩn bị IAM permissions</li></ul> | 31/10 | 31/10 | CI/CD Docs |
+
+---
 
 ### Week 8 Achievements:
 
-* Hiểu nền tảng bảo mật trên AWS.
-* Tạo user, role, policy, group thành thạo.
-* Dùng KMS để mã hóa dữ liệu.
-* Hoàn thành các lab Security chính.
+* Hiểu rõ phạm vi dự án và yêu cầu kỹ thuật.
+* Xây dựng được bản phác thảo kiến trúc pipeline.
+* Chuẩn bị xong GitHub repository và tài liệu nền tảng.
